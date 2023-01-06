@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import client from "../constants/apollo-client";
 import authenticatedVar from "../constants/authenticated";
+// import { authToken } from "../constants/authenticated";
 import useGetMe from "../hooks/useGetMe";
 
 interface GuardProps {
@@ -11,29 +12,38 @@ interface GuardProps {
 }
 
 const Guard = ({ children, excludedRoutes }: GuardProps) => {
-  const { data: user, refetch } = useGetMe();
+  const { loading, error, data: customer, refetch } = useGetMe();
   const authenticated = useReactiveVar(authenticatedVar);
   const router = useRouter();
 
   useEffect(() => {
+    
     if (!excludedRoutes?.includes(router.pathname)) {
       refetch();
     }
+
   }, [router.pathname, refetch, excludedRoutes]);
 
+
   useEffect(() => {
+
     if (!authenticated && !excludedRoutes?.includes(router.pathname)) {
       router.push("/login");
       client.resetStore();
     }
-  }, [authenticated, router, excludedRoutes]);
+
+    if (customer && authenticated && excludedRoutes?.includes(router.pathname)){
+      router.push("/");
+    }
+
+  }, [authenticated, router, excludedRoutes, customer]);
 
   return (
     <>
       {excludedRoutes?.includes(router.pathname) ? (
         children
       ) : (
-        <>{user && children}</>
+        <>{!error && customer && children}</>
       )}
     </>
   );

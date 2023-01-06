@@ -9,19 +9,19 @@ const Signup = () => {
   const router = useRouter();
 
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    const data = {
-      email: event.target.email.value,
-      password: event.target.password.value,
-    };
-    console.log(data);
-    await createUser({
-      variables: {
-        createUserData: data,
-      },
-    });
-    await login(data);
-    router.push("/");
+    // event.preventDefault();
+    // const data = {
+    //   email: event.target.email.value,
+    //   password: event.target.password.value,
+    // };
+    // console.log(data);
+    // await createUser({
+    //   variables: {
+    //     createUserData: data,
+    //   },
+    // });
+    // await login(data);
+    // router.push("/");
   };
 
   return (

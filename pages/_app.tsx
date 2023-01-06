@@ -6,11 +6,11 @@ import Guard from "../components/Guard";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
-      <Guard excludedRoutes={["/login", "/signup"]}>
-        <Component {...pageProps} />
-      </Guard>
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+        <Guard excludedRoutes={["/login", "/signup"]}>
+          <Component {...pageProps} />
+        </Guard>
+      </ApolloProvider>
   );
 }
 
