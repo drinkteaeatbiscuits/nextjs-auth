@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from './Product.module.scss';
 
 const Product = (props:any) => {
 	const { product } = props;

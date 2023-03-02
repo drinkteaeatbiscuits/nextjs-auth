@@ -1,9 +1,17 @@
+import { useReactiveVar } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Header from "../components/Header";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Header from "../components/Header/Header";
+import authenticatedVar from "../constants/authenticated";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+
+  const router = useRouter();
+	const authenticated = useReactiveVar(authenticatedVar);
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -14,8 +22,9 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main>
-       <h1>Home</h1>
+      <main style={{padding: '70px 0 0'}}>
+        <h1>Home</h1>
+        { authenticated && <Link href="/shop">Shop</Link> }
       </main>
 
     </div>

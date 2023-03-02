@@ -1,0 +1,25 @@
+.breadcrumbs {
+	display: flex; 
+	gap: 8px; 
+	padding: 16px 0;
+	font-size: 15px;
+	flex-wrap: wrap;
+	a {
+		color: #D6D7DD;
+		transition: 0.2s ease-out;
+		white-space: nowrap;
+		padding: 0 0 0 2px;
+		&:hover {
+			color: #737373;
+		}
+	}
+	.divider {
+		color: #F1F2F8;
+		padding: 0 2px 0 0;
+	}
+	.currentCategory {
+		color: #737373;
+		cursor: default;
+		white-space: nowrap;
+	}
+}

@@ -5,7 +5,7 @@ import Homestyles from "../styles/Home.module.css";
 import authenticatedVar from "../constants/authenticated";
 import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 
 const Login = () => {
 

@@ -1,0 +1,22 @@
+.searchModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: auto;
+	background: #fff;
+	z-index: 99;
+	width: 100%;
+	padding: 70px 16px 16px;
+	font-size: 1.4rem;
+	transition: 0.3s transform cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+.closeWrap {
+	display: flex;
+	justify-content: flex-end;
+	padding: 8px;
+}
+
+.close {
+	font-size: 1rem;
+}

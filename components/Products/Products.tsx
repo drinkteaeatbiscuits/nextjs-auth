@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { useInView } from 'react-intersection-observer';
+import styles from './Products.module.scss';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useState } from "react";
 
 const Products = (props:any) => {
 	const { products, pageNumber, setPageNumber } = props;
+
+	const [layout, setLayout] = useState('');
 
 	const { ref, inView, entry } = useInView({
 		/* Optional options */
@@ -15,9 +20,28 @@ const Products = (props:any) => {
 		}
 	  });
 
-	return <div className="products">
+	console.log(products);
+	// console.log('test');
+
+	return <div className={ styles.products + ' ' + styles[layout] }>
+<div className="" style={{width: '100%'}}>		
+	<div className="" onClick={() => setLayout('grid')}>grid</div>
+	<div className="" onClick={() => setLayout('single')}>single</div>
+	<div className="" onClick={() => setLayout('list')}>list</div>
+</div>
+
 		 { products?.items && products?.items.map((product: any) => (
-				<div style={{background: '#f7f7f7', width: '320px', height: '400px', borderRadius: '4px', margin: '8px'}} key={product.id}>
+				<div className={styles.product} key={product.id}>
+				<div className={styles.imagWrap}>
+					<LazyLoadImage
+						className={styles.thumbnail}
+						alt={product.thumbnail.label}
+						
+						src={product.thumbnail.url} 
+						 />
+				</div>
+					
+
 					<Link href={product.url_key}>{product.name}</Link>
 					
 				</div>
@@ -25,7 +49,7 @@ const Products = (props:any) => {
 		}
 		
 
-		{ pageNumber < products?.page_info?.total_pages && <div ref={ref} className="" onClick={() => setPageNumber( pageNumber + 1 ) }>
+		{ pageNumber < products?.page_info?.total_pages && <div ref={ref} className={styles.loadMore} onClick={() => setPageNumber( pageNumber + 1 ) }>
 		
 			<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: 'auto', background: 'none', display: 'block', shapeRendering: 'auto'}} width="40px" height="40px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 				<circle cx="50" cy="50" fill="none" stroke="#e2e7eb" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">

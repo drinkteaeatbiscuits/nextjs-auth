@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { NextPage } from "next";
 import Link from "next/link";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import client from "../constants/apollo-client";
 import useGetCategories from "../hooks/useGetCategories";
 import styles from "../styles/Home.module.css";
@@ -11,11 +11,11 @@ const Shop: NextPage = () => {
 
 	const { data: categories } = useGetCategories('');
 
-	categories && console.log(categories.categoryList[0].children[0].children);
+	// categories && console.log(categories.categoryList[0].children[0].children);
 
 	return <div className={styles.container}>
 		<Header />
-		<main>
+		<main style={{paddingTop: '70px'}}>
 			<h1>Shop Page</h1>
 
 			<div className="categories">

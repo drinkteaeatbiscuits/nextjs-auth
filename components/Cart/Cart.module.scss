@@ -1,0 +1,13 @@
+.Cart {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	background: #fff;
+	z-index: 99;
+	width: 90%;
+	max-width: 320px;
+	padding-top: 70px;
+	transition: 0.2s transform cubic-bezier(0.46, 0.03, 0.52, 0.96);
+
+}
