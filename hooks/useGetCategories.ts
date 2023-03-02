@@ -45,7 +45,7 @@ const useGetCategories = ( url: any ) => {
 		variables: url ? {
 			"filters": {
 				"url_key": {
-				"eq": url[0]
+					"eq": url[0]
 				}
 			}
 		} : { 

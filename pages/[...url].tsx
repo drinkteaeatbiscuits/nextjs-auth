@@ -20,10 +20,11 @@ const CategoryPage = (props: any) => {
 	const [ pageNumber, setPageNumber ] = useState(1);
 
 	const { data: categories } = useGetCategories( url );
-	const { data: products, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
+	// const { data: products, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
 	const { data: product, refetch: refetchProduct } = useGetProduct( { url_key: url } );
+	const { data: products, fetchMore: fetchMoreProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: 345994 } );
 
-	const [loadedProducts, setLoadedProducts] = useState<any>({});
+	const [loadedProducts, setLoadedProducts] = useState<any>(null);
 
 	console.log(categories?.categoryList);
 	// console.log(url);
@@ -40,27 +41,62 @@ const CategoryPage = (props: any) => {
 
 	useEffect(() => {
 
-		categories && refetchProducts({
-			currentPage: pageNumber,
-			filter: {
-				category_id: {
-					eq: null,
-					in: categoryArray()
-				}
-			}
-		});
+		// categories && refetchProducts({
+		// 	currentPage: pageNumber,
+		// 	filter: {
+		// 		category_id: {
+		// 			eq: null,
+		// 			in: categoryArray()
+		// 		}
+		// 	}
+		// });
 
 		// products && setLoadedProducts({...loadedProducts, products: {...products.products}});
 		// products && loadedProducts.length === 0 && setLoadedProducts([products.items]);
 
-		products && setLoadedProducts( products.products );
+		// products && setLoadedProducts( products.products );
 
 		// console.log(loadedProducts);
+		!loadedProducts && products && setLoadedProducts( products.products );
 		
 	}, [categories, products, pageNumber]);
 
+	
+
+	const getMoreProducts = async () => {
+		const { data } = await fetchMoreProducts({
+		  variables: { 
+			"currentPage": pageNumber + 1,
+			"pageSize": 9,
+			"filter": {
+			"category_id": {
+					"eq": null,
+					"in": categoryArray()
+					}
+			
+				} 
+			}
+		});
+
+		const { info, results } = data.products;
+
+		// console.log(data); 
+
+		setLoadedProducts(() => { 
+			// console.log(prevProducts);
+			return {	
+					__typename: 'Products',
+					items: [...loadedProducts.items, ...data.products.items],
+					page_info: data.products.page_info
+					}
+					 
+				}
+			);
+		setPageNumber(pageNumber + 1);
+	  };
+
 	// console.log(pageNumber);
-	// console.log(categories?.categoryList[0]?.display_mode);
+	console.log(categories);
   
 	return <div className={styles.container}>
 		<Header />
@@ -72,7 +108,7 @@ const CategoryPage = (props: any) => {
 
 			{ categories?.categoryList[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
 			
-			{ categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={setPageNumber} /> }
+			{ categories?.categoryList[0]?.display_mode === 'PRODUCTS' || categories?.categoryList[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={getMoreProducts} /> }
 
 			{ product?.products?.items && product?.products?.items?.length > 0 && <Product product={ product } /> }
 			
