@@ -6,8 +6,8 @@ const Breadcrumbs = (props: any) => {
 	// console.log(breadcrumbs);
 	return <div style={{display: 'flex', gap: '8px'}}>
 		{ breadcrumbs && breadcrumbs.map((breadcrumb: any) => {
-			return <Link href={breadcrumb.category_url_key} key={breadcrumb.category_id}>
-				{ breadcrumb.category_name }
+			return <Link href={ breadcrumb.category_url_key || breadcrumb.url_key } key={breadcrumb.category_id || breadcrumb.id}>
+				{ breadcrumb.category_name || breadcrumb.name }
 			</Link>
 		
 		})

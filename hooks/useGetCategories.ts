@@ -13,6 +13,7 @@ query Categories($filters: CategoryFilterInput) {
 		category_name
 		category_url_key
 		category_url_path
+		__typename
 	  }
 	  children {
 		id
@@ -26,8 +27,11 @@ query Categories($filters: CategoryFilterInput) {
 		  level
 		  product_count
 		  url_key
+		  __typename
 		}
+		__typename
 	  }
+	  __typename
 	}
   
 }

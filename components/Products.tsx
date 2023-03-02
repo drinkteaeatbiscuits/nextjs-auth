@@ -9,7 +9,7 @@ const Products = (props:any) => {
 
 	}
 
-	console.log(products);
+	// console.log(products);
 
 	return <div className="products">
 		 { products?.items && products?.items.map((product: any) => (
