@@ -1,3 +1,8 @@
+@keyframes fadeIn {
+	0% { color: #737373; }
+	100% { color: #D6D7DD; }
+}
+
 .breadcrumbs {
 	display: flex; 
 	gap: 8px; 
@@ -9,6 +14,7 @@
 		transition: 0.2s ease-out;
 		white-space: nowrap;
 		padding: 0 0 0 2px;
+		animation: fadeIn 0.25s;
 		&:hover {
 			color: #737373;
 		}
@@ -21,5 +27,7 @@
 		color: #737373;
 		cursor: default;
 		white-space: nowrap;
+		animation: fadeIn 0.25s;
+		padding: 0 0 0 2px;
 	}
 }

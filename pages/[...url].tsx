@@ -22,13 +22,14 @@ const CategoryPage = (props: any) => {
 	const { data: categories } = useGetCategories( url );
 	// const { data: products, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
 	const { data: product, refetch: refetchProduct } = useGetProduct( { url_key: url } );
-	const { data: products, fetchMore: fetchMoreProducts, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
+	const { data: products, fetchMore: fetchMoreProducts, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null, sort: { position: 'DESC' } } );
 
 	const [loadedProducts, setLoadedProducts] = useState<any>(null);
 	const [categoriesArray, setCategoriesArray] = useState<any>(null);
+	const [sortProducts, setSortProducts] = useState<any>({ position: 'DESC' });
+	const [totalProducts, setTotalProducts] = useState<any>(null);
 
-	// console.log(categories?.categoryList);
-	// console.log(url);
+	
 
 	const updateCategoryArray = () => {
 		const categoryArray: any[] = []
@@ -50,6 +51,8 @@ const CategoryPage = (props: any) => {
 
 
 	useEffect(() => {
+
+		setPageNumber(1);
 		
 		categoriesArray && refetchProducts({
 			filter: {
@@ -58,6 +61,7 @@ const CategoryPage = (props: any) => {
 					in: categoriesArray,
 				},
 			},
+			sort: sortProducts,
 		});
 
 	}, [categoriesArray]);
@@ -65,53 +69,114 @@ const CategoryPage = (props: any) => {
 	useEffect(() => {
 
 		products && setLoadedProducts( products.products );
+		products && setTotalProducts( products.products.total_count ) ;
 
-	}, [products]);
+	}, [ products ]);
+
 
 	useEffect(() => {
 
+		setPageNumber(1);
 		setLoadedProducts( null );
+		setTotalProducts( null );
 
-	}, [url]);
+	}, [ url ]);
 
-	
+	useEffect(() => {
+
+		// sortProducts && refetchProducts({
+		// 	sort: sortProducts,
+		// });
+
+		// setLoadedProducts( null );
+		// setTotalProducts( null );
+		setPageNumber(1);
+		sortProducts && refetchProducts({
+			currentPage: 1,
+			pageSize: 9,
+			filter: {
+				category_id: {
+					eq: null,
+					in: categoriesArray,
+				},
+			},
+			sort: sortProducts,
+		});
+
+	}, [ sortProducts ]);
+
+
+	const changeSortOption = (name:any, order:any) => {
+		
+		const newSortObject = {}
+		
+		Object.assign(newSortObject,{[name]: order});
+
+		setSortProducts( newSortObject );
+	}
+
+	// console.log(sortProducts);
 
 	const getMoreProducts = async () => {
 
+		console.log('get more');
+
 		if( categoriesArray ) {
 
-			const { data } = await fetchMoreProducts({
+			const nextPageNumber = pageNumber + 1;
+
+			await fetchMoreProducts({
 					variables: { 
-						"currentPage": pageNumber + 1,
+						"currentPage": nextPageNumber,
 						"pageSize": 9,
 						"filter": {
-						"category_id": {
+							"category_id": {
 								"eq": null,
 								"in": categoriesArray
-								}
-						
-							} 
+							}
+						},
+						"sort": sortProducts,
+							
 						}
-					});
-			const { info, results } = data.products;
+					}).then((data) => {
 
-			setLoadedProducts(() => { 
-				// console.log(prevProducts);
-				return {	
-						__typename: 'Products',
-						items: [...loadedProducts.items, ...data.products.items],
-						page_info: data.products.page_info
-						}
-						 
+						data.data?.products && setLoadedProducts((test:any) => { 
+			
+
+							const itemsArray = data.data.products.items.reduce(
+								(acc:any, item:any) => {
+								
+								  return acc.filter( (e:any) => e.id === item.id ).length > 0 ? acc : [...acc, item]
+								},
+								[...test.items]
+							  )
+							  
+							// const itemsArray = [...test.items, ...data.data.products.items];
+							
+
+							return {	
+									__typename: 'Products',
+									items: itemsArray,
+									page_info: data.data.products.page_info,
+									total_count: data.data.products.total_count,
+									}
+									 
+
+					});
+			
+			
 					}
 				);
-			setPageNumber(pageNumber + 1);
+
+			setPageNumber(nextPageNumber);
 
 		}
 
 
 		
 	  };
+
+	// console.log(products);
 
 	// console.log(pageNumber);
 	// console.log(categories);
@@ -122,10 +187,30 @@ const CategoryPage = (props: any) => {
 		<Header />
 		<main style={{paddingTop: '70px'}}>
 
-			<Breadcrumbs breadcrumbs={categories?.categoryList[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categoryList[0]?.name || product?.products?.items[0]?.name} />
+			<Breadcrumbs url={url} breadcrumbs={categories?.categoryList[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categoryList[0]?.name || product?.products?.items[0]?.name} />
 			
 			<h1>{categories?.categoryList[0]?.name}</h1>
 
+			{ categories?.categoryList[0]?.display_mode !== 'PAGE' && <div className="">
+			
+				{ totalProducts && <p>{totalProducts} products found</p> }
+
+				<select className="sort" value={Object.keys(sortProducts)[0]} onChange={ (event) => changeSortOption(event.target.value, sortProducts[Object.keys(sortProducts)[0]]) }>
+					<option className="" value={'position'}>Position</option>
+					<option className="" value={'name'}>Name</option>
+					<option className="" value={'price'}>Price</option>
+					<option className="" value={'relevance'}>Relevance</option>
+				</select>
+
+				<div className="" onClick={() => { 
+					// setSortProductsOrder( sortProductsOrder === 'ASC' ? 'DESC' : 'ASC' )
+					changeSortOption(Object.keys(sortProducts)[0], sortProducts[Object.keys(sortProducts)[0]]  === 'ASC' ? 'DESC' : 'ASC')
+				}
+				}>
+					{ sortProducts[Object.keys(sortProducts)[0]] }	
+				</div>
+
+			</div> }
 
 			{ categories?.categoryList[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
 			

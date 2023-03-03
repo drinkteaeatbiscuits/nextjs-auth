@@ -4,11 +4,13 @@ const GET_PRODUCTS = gql`
 	query Products(
 		$currentPage: Int, 
 		$pageSize: Int, 
-		$filter: ProductAttributeFilterInput) {
+		$filter: ProductAttributeFilterInput,
+		$sort: ProductAttributeSortInput) {
 		products(
 			currentPage: $currentPage, 
-			pageSize: $pageSize, 
-			filter: $filter) {
+			pageSize: $pageSize,
+			filter: $filter,
+			sort: $sort ) {
 				items {
 					id
 					name
@@ -132,15 +134,22 @@ const GET_PRODUCTS = gql`
 				  }
 				  __typename
 				  total_count
-		}
+				  sort_fields {
+					default
+					options {
+					  label
+					  value
+					}
+				},		  
+			
+			
+			}
   	}
 `;
 
 const useGetProducts = ( props: any ) => {
 	
-	const {currentPage, pageSize, category_id} = props;
-
-	// console.log(category_id);
+	const { currentPage, pageSize, category_id, sort } = props;
 
   return useQuery( GET_PRODUCTS, 
 	{ 
@@ -149,11 +158,12 @@ const useGetProducts = ( props: any ) => {
 			"currentPage": currentPage ? currentPage : 1,
 			"pageSize": pageSize ? pageSize : 9,
 			"filter": {
-			"category_id": {
-				"eq": null,
-				"in": category_id ? category_id : null
+				"category_id": {
+					"eq": null,
+					"in": category_id ? category_id : null
 				}
-			}
+			},
+			"sort": sort,
 		}, 
 		
 	} );

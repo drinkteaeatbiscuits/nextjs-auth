@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from './Product.module.scss';
+import Image from "next/image";
 
 const Product = (props:any) => {
 	const { product } = props;
@@ -19,7 +20,7 @@ const Product = (props:any) => {
 			padding: '40px 0'
 		 }}>
 			<div className="">
-				<img style={{width: '450px'}} src={ theProduct.image.url } />
+			<Image style={{width: '450px'}} alt={ theProduct?.name } src={ theProduct.image.url } />
 			</div>
 			
 			<div className="" 
