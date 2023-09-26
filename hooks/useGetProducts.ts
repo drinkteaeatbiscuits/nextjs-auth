@@ -15,116 +15,58 @@ const GET_PRODUCTS = gql`
 					id
 					name
 					url_key
-					__typename
-					attribute_set_id
-					image {
-					  disabled
-					  label
-					  position
-					  url
-					}
-					only_x_left_in_stock
-					price_range {
-					  maximum_price {
-						discount {
-						  amount_off
-						  percent_off
-						}
-						final_price {
-						  currency
-						  value
-						}
-						fixed_product_taxes {
-						  amount {
-							currency
-							value
-						  }
-						  label
-						}
-						regular_price {
-						  currency
-						  value
-						}
-					  }
-					  minimum_price {
-						discount {
-						  amount_off
-						  percent_off
-						}
-						final_price {
-						  currency
-						  value
-						}
-						fixed_product_taxes {
-						  amount {
-							currency
-							value
-						  }
-						  label
-						}
-						regular_price {
-						  currency
-						  value
-						}
-					  }
-					}
-					price_tiers {
-					  discount {
-						amount_off
-						percent_off
-					  }
-					  final_price {
-						currency
-						value
-					  }
-					  quantity
-					}
-					sku
-					small_image {
-					  disabled
-					  label
-					  position
-					  url
-					}
-					stock_status
-					thumbnail {
-					  disabled
-					  label
-					  position
-					  url
-					}
-					swatch_image
-					... on ConfigurableProduct {
-					  configurable_options {
+					options_container
+				
+      			... on ConfigurableProduct {
+					canonical_url
+					configurable_options {
 						attribute_code
-						attribute_id
-						id
+						label
+						values {
+							default_label
+							label
+							store_label
+							
+							use_default_value
+						}
+						uid
+						use_default
+					}
+					options {
+						title
+					  }
+					  variants {
+						attributes {
+						  code
+						  label
+						  uid
+						}
+						product {
+							name
+							sku
+							uid
+							image {
+							  disabled
+							  label
+							  position
+							  url
+							}
+						}
+					  }
+        			
+					}
+					image {
+						disabled
 						label
 						position
-						product_id
-						use_default
-						values {
-						  default_label
-						  label
-						  store_label
-						  swatch_data {
-							value
-							... on ImageSwatchData {
-							  thumbnail
-							  value
-							}
-							... on TextSwatchData {
-							  value
-							}
-							... on ColorSwatchData {
-							  value
-							}
-						  }
-						  use_default_value
-						  value_index
-						}
-					  }
+						url
 					}
+					thumbnail {
+						disabled
+						label
+						position
+						url
+					  }
 				  }
 				  page_info {
 					current_page

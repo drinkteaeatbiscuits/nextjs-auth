@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import cartId from "../constants/cartId";
 
 const GET_BASKET = gql`
 query Basket {
@@ -38,8 +39,19 @@ query Basket {
 `;
 
 const useGetBasket = () => {
+	
   
-  return useQuery( GET_BASKET, { errorPolicy: "ignore" } );
+//   return useQuery( GET_BASKET, { errorPolicy: "ignore" } );
+
+	const getBasket = useQuery( 
+		GET_BASKET, { 
+		errorPolicy: "ignore"
+		});
+
+	// console.log(getBasket?.data?.customerCart?.id);
+	getBasket?.data?.customerCart?.id && cartId(getBasket.data.customerCart.id);
+
+	return getBasket;
 
 };
 

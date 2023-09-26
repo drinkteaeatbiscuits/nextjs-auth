@@ -3,8 +3,6 @@ import styles from './Cart.module.scss';
 
 const Cart = (props:any) => {
 
-	
-
 	const {showBasket, setShowBasket, cartData, cartLoading} = props;
 
 	// console.log(data);

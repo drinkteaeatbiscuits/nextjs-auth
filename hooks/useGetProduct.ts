@@ -9,6 +9,46 @@ const GET_PRODUCT = gql`
 				id
 				name
 				url_key
+				options_container
+				
+      			... on ConfigurableProduct {
+					canonical_url
+					configurable_options {
+						attribute_code
+						label
+						values {
+							default_label
+							label
+							store_label
+							
+							use_default_value
+						}
+						uid
+						use_default
+					}
+					options {
+						title
+					  }
+					  variants {
+						attributes {
+						  code
+						  label
+						  uid
+						}
+						product {
+							name
+							sku
+							uid
+							image {
+							  disabled
+							  label
+							  position
+							  url
+							}
+						}
+					  }
+        			
+				}
 				categories {
 					name
 					url_key
@@ -35,52 +75,55 @@ const GET_PRODUCT = gql`
 				  url
 				}
 				price_range {
-				  maximum_price {
-					discount {
-					  amount_off
-					  percent_off
+				  	maximum_price {
+						discount {
+							amount_off
+							percent_off
+						}
+						final_price {
+							currency
+							value
+						}
+						fixed_product_taxes {
+							amount {
+								currency
+								value
+							}
+							label
+						}
+						regular_price {
+							currency
+							value
+						}
+				  	}
+				  	minimum_price {
+						discount {
+							amount_off
+							percent_off
+						}
+						final_price {
+							currency
+							value
+						}
+						fixed_product_taxes {
+							amount {
+							currency
+							value
+							}
+							label
+						}
+						regular_price {
+							currency
+							value
+						}
 					}
-					final_price {
-					  currency
-					  value
-					}
-					fixed_product_taxes {
-					  amount {
-						currency
-						value
-					  }
-					  label
-					}
-					regular_price {
-					  currency
-					  value
-					}
-				  }
-				  minimum_price {
-					discount {
-					  amount_off
-					  percent_off
-					}
-					final_price {
-					  currency
-					  value
-					}
-					fixed_product_taxes {
-					  amount {
-						currency
-						value
-					  }
-					  label
-					}
-					regular_price {
-					  currency
-					  value
-					}
-				  }
+				  
 				}
 				manufacturer
 				attribute_set_id
+				
 			}
+			
 		}
   	}
 `;
