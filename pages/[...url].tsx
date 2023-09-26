@@ -191,7 +191,7 @@ const CategoryPage = (props: any) => {
 			
 			<h1>{categories?.categoryList[0]?.name}</h1>
 
-			{ categories?.categoryList[0]?.display_mode !== 'PAGE' && <div className="">
+				{ categories?.categoryList[0]?.display_mode !== 'PAGE' && categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <div className="">
 			
 				{ totalProducts && <p>{totalProducts} products found</p> }
 

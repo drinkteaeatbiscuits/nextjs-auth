@@ -14,11 +14,13 @@ const Home: NextPage = () => {
   
   return (
     <div className={styles.container}>
-      <Head>
+      {/* <Head>
         <title>Top Gift Store</title>
         <meta name="description" content="Top Gift Store" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
+
+      
 
       <Header />
 

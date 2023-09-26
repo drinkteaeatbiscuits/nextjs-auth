@@ -34,19 +34,18 @@ const Products = (props:any) => {
 		 { products?.items && products?.items.map((product: any) => (
 
 				<div className={styles.product} key={product.id}>
-				<div className={styles.imagWrap}>
+					<div className={styles.imagWrap}>
 						<Link href={product.url_key}><LazyLoadImage
 						className={styles.thumbnail}
 						alt={product.thumbnail.label}
-						
 						src={product.thumbnail.url} 
-						 /></Link>
-				</div>
+							/></Link>
+					</div>
 					
 
 					<Link href={product.url_key}>{product.name}</Link>
-					<p>{ product?.sku }</p>
-					<p>{ product?.stock_status }</p>
+					{/* <p>{ product?.sku }</p> */}
+					{/* <p>{ product?.stock_status }</p> */}
 					<ProductPrice product={product} />
 				</div>
 			))
