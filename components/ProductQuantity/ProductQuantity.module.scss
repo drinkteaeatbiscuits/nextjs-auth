@@ -1,0 +1,31 @@
+.productQuantity {
+	display: flex;
+	background: #fff;
+	position: relative;
+	align-items: center;
+	height: 43px;
+	border-radius: 22px;
+	padding: 5px 5px;
+	.plus, .minus {
+		display: block;
+		cursor: pointer;
+		svg {
+			display: block;
+		}
+	}
+	.quantityInput {
+		all: unset;
+		width: auto;
+		text-align: center;
+		max-width: 60px;
+		-moz-appearance: textfield;
+		&[type=number] {
+			-moz-appearance: textfield;
+		}
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+}

@@ -24,7 +24,7 @@ export const useAddToBasket = () => {
       errorPolicy: "ignore",
       onCompleted(data, res) {
 
-        // console.log(data);
+        console.log(data);
 
         client.refetchQueries({ include: "active" });
         

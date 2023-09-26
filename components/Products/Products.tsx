@@ -4,11 +4,12 @@ import styles from './Products.module.scss';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useState } from "react";
 import ProductPrice from "../ProductPrice/ProductPrice";
+import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 const Products = (props:any) => {
 	const { products, pageNumber, setPageNumber } = props;
 
-	const [layout, setLayout] = useState('');
+	const [layout, setLayout] = useState('list');
 
 	const { ref, inView, entry } = useInView({
 		/* Optional options */
@@ -24,7 +25,7 @@ const Products = (props:any) => {
 	// console.log(products);
 	// console.log('test');
 
-	return <div className={ styles.products + ' ' + styles[layout] }>
+	return <div className={ styles.products + ' products ' + layout }>
 			<div className="" style={{width: '100%'}}>		
 				<div className="" onClick={() => setLayout('grid')}>grid</div>
 				<div className="" onClick={() => setLayout('single')}>single</div>
@@ -33,21 +34,23 @@ const Products = (props:any) => {
 
 		 { products?.items && products?.items.map((product: any) => (
 
-				<div className={styles.product} key={product.id}>
-					<div className={styles.imagWrap}>
-						<Link href={product.url_key}><LazyLoadImage
-						className={styles.thumbnail}
-						alt={product.thumbnail.label}
-						src={product.thumbnail.url} 
-							/></Link>
-					</div>
+			<ProductCatalog product={product} key={product.id} layout={layout} />
+
+				// <div className={styles.product} key={product.id}>
+				// 	<div className={styles.imagWrap}>
+				// 		<Link href={product.url_key}><LazyLoadImage
+				// 		className={styles.thumbnail}
+				// 		alt={product.thumbnail.label}
+				// 		src={product.thumbnail.url} 
+				// 			/></Link>
+				// 	</div>
 					
 
-					<Link href={product.url_key}>{product.name}</Link>
-					{/* <p>{ product?.sku }</p> */}
-					{/* <p>{ product?.stock_status }</p> */}
-					<ProductPrice product={product} />
-				</div>
+				// 	<Link href={product.url_key}>{product.name}</Link>
+				// 	{/* <p>{ product?.sku }</p> */}
+				// 	{/* <p>{ product?.stock_status }</p> */}
+				// 	<ProductPrice product={product} />
+				// </div>
 			))
 		}
 		

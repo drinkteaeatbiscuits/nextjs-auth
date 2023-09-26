@@ -72,7 +72,8 @@ const Product = (props:any) => {
 			padding: '40px 0'
 		 }}>
 			<div className="">
-			<Image style={{width: '450px'}} alt={ theProduct?.name } src={ theProduct.image.url } />
+			{/* <Image width={400} height={400} style={{width: '450px'}} alt={ theProduct?.name } src={ theProduct.image.url } /> */}
+			<img src={theProduct.image.url} />
 			</div>
 			
 			<div className="" 

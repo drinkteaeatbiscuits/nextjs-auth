@@ -49,7 +49,7 @@ const useGetBasket = () => {
 		});
 
 	// console.log(getBasket?.data?.customerCart?.id);
-	getBasket?.data?.customerCart?.id && cartId(getBasket.data.customerCart.id);
+	/* getBasket?.data?.customerCart?.id && cartId(getBasket.data.customerCart.id); */
 
 	return getBasket;
 

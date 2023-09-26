@@ -15,6 +15,56 @@ const GET_PRODUCTS = gql`
 					id
 					name
 					url_key
+					thumbnail {
+						disabled
+						label
+						position
+						url
+					  }
+					price_range {
+						maximum_price {
+						  discount {
+							amount_off
+							percent_off
+						  }
+						  final_price {
+							currency
+							value
+						  }
+						  fixed_product_taxes {
+							amount {
+							  currency
+							  value
+							}
+							label
+						  }
+						  regular_price {
+							currency
+							value
+						  }
+						}
+						minimum_price {
+						  discount {
+							amount_off
+							percent_off
+						  }
+						  final_price {
+							currency
+							value
+						  }
+						  fixed_product_taxes {
+							amount {
+							  currency
+							  value
+							}
+							label
+						  }
+						  regular_price {
+							currency
+							value
+						  }
+						}
+					  }
 					options_container
 				
       			... on ConfigurableProduct {
@@ -51,6 +101,56 @@ const GET_PRODUCTS = gql`
 							  position
 							  url
 							}
+							thumbnail {
+								disabled
+								label
+								position
+								url
+							  }
+							  price_range {
+								maximum_price {
+								  discount {
+									amount_off
+									percent_off
+								  }
+								  final_price {
+									currency
+									value
+								  }
+								  fixed_product_taxes {
+									amount {
+									  currency
+									  value
+									}
+									label
+								  }
+								  regular_price {
+									currency
+									value
+								  }
+								}
+								minimum_price {
+								  discount {
+									amount_off
+									percent_off
+								  }
+								  final_price {
+									currency
+									value
+								  }
+								  fixed_product_taxes {
+									amount {
+									  currency
+									  value
+									}
+									label
+								  }
+								  regular_price {
+									currency
+									value
+								  }
+								}
+							  }
 						}
 					  }
         			

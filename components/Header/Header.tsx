@@ -2,13 +2,14 @@ import { useReactiveVar } from "@apollo/client";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import authenticatedVar from "../../constants/authenticated";
 import useGetBasket from "../../hooks/useGetBasket";
 import Cart from "../Cart/Cart";
 import NavigationMenu from "../NavigationMenu/NavigationMenu";
 import SearchModal from "../SearchModal/SearchModal";
 import styles from './Header.module.scss';
+import cartId from "../../constants/cartId";
 
 
 const Header = () => {
@@ -27,6 +28,15 @@ const Header = () => {
 		setShowBasket(!showBasket);
 
 	}
+
+	useEffect(() => {
+		
+		cartData?.customerCart?.id && cartId(cartData.customerCart.id);
+		
+	}, [cartData?.customerCart?.id]);
+
+	
+
 
 	const logo = <svg className={styles.logo} onClick={() => router.push('/')} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="44" height="45.651" viewBox="0 0 44 45.651">
 	<path d="M4.643,14.95c1.459,1.428,3.59.83,5.216.054A24.831,24.831,0,0,0,17.447,7.73c1.154-1.8,2.714-4.09,2-6.329C18.848.174,17.385-.045,16.161.007a13.161,13.161,0,0,0-4.82,1.574A17.832,17.832,0,0,0,6.859,5.229,13.994,13.994,0,0,0,4.1,10.295a5.665,5.665,0,0,0,.545,4.655" transform="translate(3.621 0.001)" fill="#2e2e2d" fillRule="evenodd"/>
