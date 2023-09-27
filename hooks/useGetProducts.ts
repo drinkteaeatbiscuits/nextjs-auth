@@ -14,7 +14,9 @@ const GET_PRODUCTS = gql`
 				items {
 					id
 					name
+					sku
 					url_key
+					only_x_left_in_stock
 					thumbnail {
 						disabled
 						label
@@ -95,6 +97,7 @@ const GET_PRODUCTS = gql`
 							name
 							sku
 							uid
+							only_x_left_in_stock
 							image {
 							  disabled
 							  label

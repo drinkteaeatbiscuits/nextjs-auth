@@ -55,6 +55,8 @@ const Product = (props:any) => {
 		theProduct.variants && theProduct.variants.length > 0 && theProduct.variants.map((productVariant:any, index:any) => {
 			
 			newVariantQuantity.push('1');
+
+			return
 			
 		});
 

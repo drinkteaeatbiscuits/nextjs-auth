@@ -3,6 +3,21 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
+	.chooseLayout {
+		width: 100%;
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+		padding: 8px;
+		color: #D6D7DD;
+		> div {
+			cursor: pointer;
+		}
+		.activeIcon {
+			cursor: default;
+			color: #545353;
+		}
+	}
 	&.grid {
 		.product {
 			flex: 1 1 45%;

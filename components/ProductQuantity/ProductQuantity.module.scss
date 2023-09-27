@@ -18,8 +18,10 @@
 		width: auto;
 		text-align: center;
 		max-width: 60px;
+		appearance: textfield;
 		-moz-appearance: textfield;
 		&[type=number] {
+			appearance: textfield;
 			-moz-appearance: textfield;
 		}
 		&::-webkit-inner-spin-button,
@@ -27,5 +29,9 @@
 			-webkit-appearance: none;
 			margin: 0;
 		}
+	}
+	.disabledMinus {
+		cursor: default;
+		opacity: 0.5;
 	}
 }

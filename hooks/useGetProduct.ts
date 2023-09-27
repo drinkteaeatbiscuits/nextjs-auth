@@ -10,6 +10,7 @@ const GET_PRODUCT = gql`
 				name
 				url_key
 				options_container
+				only_x_left_in_stock
 				
       			... on ConfigurableProduct {
 					canonical_url
@@ -28,25 +29,25 @@ const GET_PRODUCT = gql`
 					}
 					options {
 						title
-					  }
-					  variants {
+					}
+					variants {
 						attributes {
-						  code
-						  label
-						  uid
+							code
+							label
+							uid
 						}
 						product {
 							name
 							sku
 							uid
 							image {
-							  disabled
-							  label
-							  position
-							  url
+								disabled
+								label
+								position
+								url							
 							}
 						}
-					  }
+					}
         			
 				}
 				categories {
@@ -68,6 +69,7 @@ const GET_PRODUCT = gql`
 				}
 				sku
 				stock_status
+				only_x_left_in_stock
 				thumbnail {
 				  disabled
 				  label
@@ -128,24 +130,24 @@ const GET_PRODUCT = gql`
   	}
 `;
 
-const useGetProduct = ( props: any ) => {
-	
+const useGetProduct = (props: any) => {
+
 	const { url_key } = props;
 
 	// console.log(category_id);
 
-  return useQuery( GET_PRODUCT, 
-	{ 
-		errorPolicy: "ignore", 
-		variables: url_key ? {
-			"filter": {
-			"url_key": {
-				"eq": url_key[0]
+	return useQuery(GET_PRODUCT,
+		{
+			errorPolicy: "ignore",
+			variables: url_key ? {
+				"filter": {
+					"url_key": {
+						"eq": url_key[0]
+					}
 				}
-			}
-		} : {}, 
-		
-	} );
+			} : {},
+
+		});
 
 };
 

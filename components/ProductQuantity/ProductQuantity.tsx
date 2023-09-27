@@ -1,11 +1,34 @@
+import { useState } from 'react';
 import styles from './ProductQuantity.module.scss';
 
 const ProductQuantity = (props:any) => {
 
 	const {value, setQuantity} = props;
 
-	return <div className={styles.productQuantity}>
-		<div className={styles.plus}>
+	const increaseQuantity = (e:any) => {
+		e.preventDefault();
+
+		let newValue = value;
+		newValue++;
+		setQuantity(newValue);
+	}
+
+	const decreaseQuantity = (e:any) => {
+		e.preventDefault();
+
+		let newValue = value;
+		newValue > 1 && newValue--;
+		
+		setQuantity(newValue);
+	}
+
+	const isDisabled = () => {
+		return value <= 1 && styles.disabledMinus
+
+	}
+
+	return <div className={styles.productQuantity }>
+		<div className={styles.minus + ' ' + isDisabled()} onClick={(e:any) => decreaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_359" data-name="Group 359" transform="translate(-243 -318)">
 					<circle id="Ellipse_9" data-name="Ellipse 9" cx="17.5" cy="17.5" r="17.5" transform="translate(243 318)" fill="#d6d6d6"/>
@@ -14,7 +37,7 @@ const ProductQuantity = (props:any) => {
 			</svg>
 		</div>
 		<input className={styles.quantityInput} type="number" value={value} onChange={(e: any) => setQuantity(e.target.value)} />
-		<div className={styles.minus}>
+		<div className={styles.plus}  onClick={(e:any) => increaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_360" data-name="Group 360" transform="translate(-318 -318)">
 					<circle id="Ellipse_8" data-name="Ellipse 8" cx="17.5" cy="17.5" r="17.5" transform="translate(318 318)" fill="#d6d6d6"/>
