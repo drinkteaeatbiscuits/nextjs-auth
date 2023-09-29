@@ -23,141 +23,204 @@ const GET_PRODUCTS = gql`
 						position
 						url
 					  }
-					price_range {
-						maximum_price {
-						  discount {
-							amount_off
-							percent_off
-						  }
-						  final_price {
-							currency
-							value
-						  }
-						  fixed_product_taxes {
-							amount {
-							  currency
-							  value
-							}
-							label
-						  }
-						  regular_price {
-							currency
-							value
-						  }
-						}
-						minimum_price {
-						  discount {
-							amount_off
-							percent_off
-						  }
-						  final_price {
-							currency
-							value
-						  }
-						  fixed_product_taxes {
-							amount {
-							  currency
-							  value
-							}
-							label
-						  }
-						  regular_price {
-							currency
-							value
-						  }
-						}
-					  }
+					
 					options_container
 				
-      			... on ConfigurableProduct {
-					canonical_url
-					configurable_options {
-						attribute_code
-						label
-						values {
-							default_label
+      				... on ConfigurableProduct {
+						canonical_url
+						configurable_options {
+							attribute_code
 							label
-							store_label
-							
-							use_default_value
-						}
-						uid
-						use_default
-					}
-					options {
-						title
-					  }
-					  variants {
-						attributes {
-						  code
-						  label
-						  uid
-						}
-						product {
-							name
-							sku
-							uid
-							only_x_left_in_stock
-							image {
-							  disabled
-							  label
-							  position
-							  url
+							values {
+								default_label
+								label
+								store_label
+								
+								use_default_value
 							}
-							thumbnail {
+							uid
+							use_default
+						}
+						options {
+							title
+					  	}
+					  	variants {
+							attributes {
+							code
+							label
+							uid
+							}
+							product {
+								name
+								sku
+								uid
+								only_x_left_in_stock
+								image {
 								disabled
 								label
 								position
 								url
-							  }
-							  price_range {
-								maximum_price {
-								  discount {
-									amount_off
-									percent_off
-								  }
-								  final_price {
-									currency
-									value
-								  }
-								  fixed_product_taxes {
-									amount {
-									  currency
-									  value
-									}
-									label
-								  }
-								  regular_price {
-									currency
-									value
-								  }
 								}
-								minimum_price {
-								  discount {
-									amount_off
-									percent_off
-								  }
-								  final_price {
-									currency
-									value
-								  }
-								  fixed_product_taxes {
-									amount {
-									  currency
-									  value
-									}
+								thumbnail {
+									disabled
 									label
-								  }
-								  regular_price {
-									currency
-									value
-								  }
+									position
+									url
 								}
-							  }
+								price_range {
+									maximum_price {
+								  		discount {
+											amount_off
+											percent_off
+								  		}
+								  		final_price {
+											currency
+											value
+								  		}
+								  		fixed_product_taxes {
+											amount {
+									  			currency
+									 			 value
+											}
+											label
+								  		}
+								  		regular_price {
+											currency
+											value
+								  		}
+									}
+									minimum_price {
+										discount {
+											amount_off
+											percent_off
+										}
+										final_price {
+											currency
+											value
+										}
+										fixed_product_taxes {
+											amount {
+												currency
+												value
+											}
+											label
+										}
+										regular_price {
+											currency
+											value
+										}
+									}
+								}
+							}
 						}
-					  }
-        			
+					
 					}
+					... on VirtualProduct {
+						price_range {
+						  maximum_price {
+							discount {
+							  amount_off
+							  percent_off
+							}
+						  }
+						  minimum_price {
+							discount {
+							  amount_off
+							  percent_off
+							}
+							final_price {
+							  currency
+							  value
+							}
+							fixed_product_taxes {
+							  amount {
+								currency
+								value
+							  }
+							  label
+							}
+							regular_price {
+							  currency
+							  value
+							}
+						  }
+						}
+					}
+					... on SimpleProduct {
+						price_range {
+						  	maximum_price {
+								discount {
+									amount_off
+									percent_off
+								}
+								final_price {
+									currency
+									value
+								}
+								fixed_product_taxes {
+									amount {
+										value
+										currency
+									}
+									label
+								}
+								regular_price {
+							  		currency
+							  		value
+								}	
+							
+						  	}
+						  	minimum_price {
+								final_price {
+							  		currency
+							  		value
+								}
+								regular_price {
+							  		currency
+							  		value
+								}
+						  	}	
+						  
+						}
+					}
+					... on VirtualProduct {
+						price_range {
+						  	maximum_price {
+								discount {
+									amount_off
+									percent_off
+								}
+								final_price {
+									currency
+									value
+								}
+								fixed_product_taxes {
+									amount {
+										value
+										currency
+									}
+									label
+								}
+								regular_price {
+							  		currency
+							  		value
+								}	
+							
+						  	}
+						  	minimum_price {
+								final_price {
+							  		currency
+							  		value
+								}
+								regular_price {
+							  		currency
+							  		value
+								}
+						  	}	
+						  
+						}
+					}
+					
 					image {
 						disabled
 						label

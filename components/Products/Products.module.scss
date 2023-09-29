@@ -3,8 +3,26 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
-	.chooseLayout {
+
+	.productsIcons {
+		display: flex;
 		width: 100%;
+	}
+	.filtersSort {
+		flex-grow: 1;
+		width: 50%;
+		display: flex;
+		gap: 8px;
+		justify-content: flex-start;
+		padding: 8px;
+		color: #D6D7DD;
+		> div {
+			cursor: pointer;
+		}
+	}
+	.chooseLayout {
+		flex-grow: 1;
+		width: 50%;
 		display: flex;
 		gap: 8px;
 		justify-content: flex-end;

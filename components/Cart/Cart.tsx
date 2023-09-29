@@ -75,12 +75,18 @@ const Cart = (props:any) => {
 		
 	}
 
+	const isCartOpenStyle = () => {
+		return showBasket && styles.showBasket
+	}
 	// console.log(cartData);
 	// console.log(showBasket);
 
-	return <div className={styles.Cart} style={{
+	return <div className={styles.Cart + ' ' + isCartOpenStyle()} style={{
 		transform: showBasket ? 'translateX(0px)' : 'translateX(100%)',
 		}}>
+
+		<div className={ styles.closeCartOverlay} onClick={() => setShowBasket(false)}></div>
+		<div className={ styles.cartInner }>
 			
 		<div className={styles.cartTop}>
 			<div className={styles.cartTitle}><span className={styles.cartTitleText}>Basket</span>{cartData?.customerCart?.total_quantity > 0 && <span className={styles.cartItemCount}>{ cartData?.customerCart?.total_quantity} items</span>}</div>	
@@ -140,6 +146,8 @@ const Cart = (props:any) => {
 			<p className={styles.cartSubtotal}>Cart Subtotal: <span className={styles.bold}>{ cartData?.customerCart?.prices?.subtotal_excluding_tax?.value && cartData?.customerCart?.prices?.subtotal_excluding_tax?.currency && <IntlProvider locale="en" defaultLocale="en"><FormattedNumber value={cartData?.customerCart?.prices?.subtotal_excluding_tax?.value} style="currency" currency={cartData?.customerCart?.prices.subtotal_excluding_tax.currency} /></IntlProvider> }</span></p>	
 			<Link href={'/checkout'}><button className={styles.goToCheckout} >Proceed to Checkout</button></Link>
 
+
+		</div>
 
 		</div>
 	</div>;

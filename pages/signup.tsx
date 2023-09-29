@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useCreateUser } from "../hooks/useCreateUser";
 import { useLogin } from "../hooks/useLogin";
-import styles from "../styles/Auth.module.css";
+import styles from "../styles/Auth.module.scss";
 
 const Signup = () => {
   const [createUser] = useCreateUser();

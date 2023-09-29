@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useLogin } from "../hooks/useLogin";
-import styles from "../styles/Auth.module.css";
+import styles from "../styles/Auth.module.scss";
 import Homestyles from "../styles/Home.module.scss";
 import authenticatedVar from "../constants/authenticated";
 import { useEffect } from "react";
@@ -29,18 +29,18 @@ const Login = () => {
   };
 
   return (
-    <div className={Homestyles.container}>
+    <div className={styles.loginContainer}>
 		  <Header />
-      <main>
-        <h1>Login</h1>
-      {authenticated && <p>Logged in</p>}
+      <main style={{paddingTop: '70px'}}>
+        <h1 className={styles.title}>Login</h1>
+
         <form onSubmit={handleSubmit}  className={styles.container}>
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" required />
-        <button type="submit">Submit</button>
-      </form>
+          <label className={styles.label} htmlFor="email">Email</label>
+          <input className={styles.loginInput} type="email" name="email" id="email" required />
+          <label className={styles.label} htmlFor="password">Password</label>
+          <input className={styles.loginInput} type="password" name="password" id="password" required />
+          <button className={styles.loginButton} type="submit">Login</button>
+        </form>
       </main>
       
 

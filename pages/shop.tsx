@@ -21,8 +21,7 @@ const Shop: NextPage = () => {
 			<div className="categories">
 			{ categories && categories?.categoryList[0].children[0].children?.map((category: any) => (
 				<div key={category.id}>
-				<Link href={category.url_key}>{category.name}</Link>
-					
+					<Link href={category.url_key}>{category.name}</Link>
 				</div>
 			))} 
 			</div>

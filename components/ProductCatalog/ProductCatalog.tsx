@@ -22,7 +22,7 @@ const ProductCatalog = (props: any) => {
 
 				{ showAdditionalOptions && <div className={styles.additionalOptions}>
 
-					{ product?.variants?.slice(1, product?.variants.length ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant.product.sku} productAttributes={productVariant?.attributes} productType={'simple'}  productLink={product.url_key} parentSku={product.sku} />)} 
+					{ product?.variants?.slice(1, product?.variants.length ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant?.product?.sku} productAttributes={productVariant?.attributes} productType={'simple'}  productLink={product.url_key} parentSku={product.sku} />)} 
 				
 				</div> }
 

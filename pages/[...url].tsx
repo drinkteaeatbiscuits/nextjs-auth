@@ -10,6 +10,7 @@ import useGetCategories from '../hooks/useGetCategories';
 import useGetProduct from '../hooks/useGetProduct';
 import useGetProducts from '../hooks/useGetProducts';
 import styles from "../styles/Home.module.scss";
+import ProductFilters from '../components/ProductFilters/ProductFilters';
 
 
 const CategoryPage = (props: any) => {
@@ -28,7 +29,7 @@ const CategoryPage = (props: any) => {
 	const [categoriesArray, setCategoriesArray] = useState<any>(null);
 	const [sortProducts, setSortProducts] = useState<any>({ position: 'DESC' });
 	const [totalProducts, setTotalProducts] = useState<any>(null);
-
+	const [showFiltersOverlay, setShowFiltersOverlay] = useState(false);
 	
 
 	const updateCategoryArray = () => {
@@ -79,6 +80,7 @@ const CategoryPage = (props: any) => {
 		setPageNumber(1);
 		setLoadedProducts( null );
 		setTotalProducts( null );
+		setShowFiltersOverlay( false );
 
 	}, [ url ]);
 
@@ -119,7 +121,7 @@ const CategoryPage = (props: any) => {
 
 	const getMoreProducts = async () => {
 
-		console.log('get more');
+		//  console.log('get more');
 
 		if( categoriesArray ) {
 
@@ -146,7 +148,7 @@ const CategoryPage = (props: any) => {
 							const itemsArray = data.data.products.items.reduce(
 								(acc:any, item:any) => {
 								
-								  return acc.filter( (e:any) => e.id === item.id ).length > 0 ? acc : [...acc, item]
+								  return acc.filter( (e:any) => e.id === item?.id ).length > 0 ? acc : [...acc, item]
 								},
 								[...test.items]
 							  )
@@ -171,8 +173,6 @@ const CategoryPage = (props: any) => {
 			setPageNumber(nextPageNumber);
 
 		}
-
-
 		
 	  };
 
@@ -182,16 +182,19 @@ const CategoryPage = (props: any) => {
 	// console.log(categories);
 	// {categories?.categoryList[0]?.display_mode === null && console.log( 'test null')}
 	// {categories?.categoryList[0]?.display_mode === 'PRODUCTS' && console.log( 'test products')}
+	// console.log(categories?.categoryList[0]?.display_mode);
   
 	return <div className={styles.container}>
 		<Header />
 		<main style={{paddingTop: '70px'}}>
 
+			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} />
+
 			<Breadcrumbs url={url} breadcrumbs={categories?.categoryList[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categoryList[0]?.name || product?.products?.items[0]?.name} />
 			
 			<h1>{categories?.categoryList[0]?.name}</h1>
 
-				{ categories?.categoryList[0]?.display_mode !== 'PAGE' && categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <div className="">
+				{ categories?.categoryList[0]?.display_mode !== 'PAGE' && <div className="">
 			
 				{ totalProducts && <p>{totalProducts} products found</p> }
 
@@ -214,9 +217,9 @@ const CategoryPage = (props: any) => {
 
 			{ categories?.categoryList[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
 			
-			{ categories?.categoryList[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } /> }
+			{ categories?.categoryList[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
 			
-			{ categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } /> }
+			{ categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
 	  		
 
 			{ product?.products?.items && product?.products?.items?.length > 0 && <Product product={ product } /> }
