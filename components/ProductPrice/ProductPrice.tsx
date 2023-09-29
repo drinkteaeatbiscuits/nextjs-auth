@@ -6,9 +6,6 @@ const ProductPrice = (props:any) => {
 	// console.log(product);
 
 	let productPrice;
-	
-	
-
 
 	if( product?.price_range?.maximum_price?.final_price?.value === product?.price_range?.minimum_price?.final_price?.value && !selectedProductID ){
 		

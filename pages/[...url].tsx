@@ -9,7 +9,7 @@ import Products from '../components/Products/Products';
 import useGetCategories from '../hooks/useGetCategories';
 import useGetProduct from '../hooks/useGetProduct';
 import useGetProducts from '../hooks/useGetProducts';
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 
 const CategoryPage = (props: any) => {

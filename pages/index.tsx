@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../components/Header/Header";
 import authenticatedVar from "../constants/authenticated";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
 

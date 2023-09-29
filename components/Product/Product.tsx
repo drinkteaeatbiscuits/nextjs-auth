@@ -5,6 +5,7 @@ import { useAddToBasket } from "../../hooks/useAddToBasket";
 import cartId from "../../constants/cartId";
 import { useReactiveVar } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Product = (props:any) => {
 	const { product } = props;
@@ -74,16 +75,15 @@ const Product = (props:any) => {
 			padding: '40px 0'
 		 }}>
 			<div className="">
-			{/* <Image width={400} height={400} style={{width: '450px'}} alt={ theProduct?.name } src={ theProduct.image.url } /> */}
-			<img src={theProduct.image.url} />
+		
+			<LazyLoadImage
+						className={styles.image}
+						alt={theProduct?.image?.label}
+						src={theProduct?.image?.url}
+					/>
 			</div>
 			
-			<div className="" 
-				style={{
-					padding: '24px',
-					flexShrink: 1,
-					width: '50%'
-				}}>
+			<div className={styles.productDetails}>
 				<h1>{ theProduct?.name }</h1>
 				<p>{ theProduct?.sku }</p>
 				<p>{ theProduct?.stock_status }</p>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "../components/Header/Header";
 import client from "../constants/apollo-client";
 import useGetCategories from "../hooks/useGetCategories";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 
 const Shop: NextPage = () => {

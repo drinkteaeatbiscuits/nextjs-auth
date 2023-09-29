@@ -1,10 +1,8 @@
 import { NextPage } from "next";
-import Cart from "../components/Cart/Cart";
 import Header from "../components/Header/Header";
-import useGetBasket from "../hooks/useGetBasket";
 import styles from "../styles/Home.module.scss";
 
-const Basket: NextPage = () => {
+const Checkout: NextPage = () => {
 
 	// const {data, error, refetch, loading} = useGetBasket();
 
@@ -12,13 +10,12 @@ const Basket: NextPage = () => {
 
 	return <div className={styles.container}>
 		<Header />
-		<main>
-			
 
-			Basket
-
-		</main>
+		<main style={{padding: '70px 0 0'}}>
+        <h1>Checkout</h1>
+        
+      </main>
 	</div>
 }
 
-export default Basket;
+export default Checkout;

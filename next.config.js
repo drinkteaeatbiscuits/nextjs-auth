@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['top-gift.co.uk'],
+  },
   async rewrites() {
     return [
       {

@@ -7,9 +7,57 @@ query Basket {
 	  id
 	  items {
 		id
+		uid
+		prices {
+			price {
+			  currency
+			  value
+			}
+		  }
+		
+		... on ConfigurableCartItem {
+			product {
+				image {
+				  url
+				  label
+				}
+			  }
+			configurable_options {
+				option_label
+				configurable_product_option_value_uid
+				value_label
+			  }
+			configured_variant {
+				image {
+					label
+					url
+				  }
+			  ... on ConfigurableProduct {
+				variants {
+				  attributes {
+					label
+				  }
+				}
+			  }
+			}
+		  }
+		  ... on SimpleCartItem {
+			customizable_options {
+			  label
+			}
+		  }
+		  ... on VirtualCartItem {
+			customizable_options {
+			  label
+			}
+		  }
 		product {
 		  name
 		  sku
+		  url_key
+		  image {
+			url
+		  }
 		  __typename
 		}
 		quantity

@@ -52,7 +52,7 @@ const Products = (props:any) => {
 
 		 { products?.items && products?.items.map((product: any) => (
 
-			<ProductCatalog product={product} key={product.id} layout={layout} />
+			<ProductCatalog product={product} key={product?.id} layout={layout} />
 
 				// <div className={styles.product} key={product.id}>
 				// 	<div className={styles.imagWrap}>

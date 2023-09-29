@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useLogin } from "../hooks/useLogin";
 import styles from "../styles/Auth.module.css";
-import Homestyles from "../styles/Home.module.css";
+import Homestyles from "../styles/Home.module.scss";
 import authenticatedVar from "../constants/authenticated";
 import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
