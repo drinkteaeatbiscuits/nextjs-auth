@@ -6,7 +6,7 @@ query Basket {
 	customerCart {
 	  id
 	  items {
-		id
+		
 		uid
 		prices {
 			price {
@@ -21,6 +21,7 @@ query Basket {
 				  url
 				  label
 				}
+				
 			  }
 			configurable_options {
 				option_label

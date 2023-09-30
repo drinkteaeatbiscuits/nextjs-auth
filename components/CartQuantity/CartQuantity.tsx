@@ -12,14 +12,22 @@ const CartQuantity = (props:any) => {
 
 	useEffect(() => {
 
-		!quantity && setTheQuantity(value); 
-
 		if(debouncedQuantity) {
 			// console.log('quantity set');
 			value !== quantity && setQuantity(quantity, CartItemUid);
 		}
 	
-	}, [value, debouncedQuantity])
+	}, [debouncedQuantity]);
+
+	useEffect(() => {
+
+		!quantity && setTheQuantity(value); 
+
+		value !== quantity && setTheQuantity(value);
+	
+	}, [value]);
+
+
 
 	const increaseQuantity = (e:any) => {
 		e.preventDefault();

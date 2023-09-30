@@ -3,6 +3,9 @@ import Link from "next/link";
 const Categories = (props: any) => {
 
 	const {categories} = props;
+
+	// console.log(categories);
+
 	return <div className="categories">
 				
 		{ categories && categories?.categoryList[0].children?.map((category: any) => (

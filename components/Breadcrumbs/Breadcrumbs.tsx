@@ -22,7 +22,7 @@ const Breadcrumbs = (props: any) => {
 
 		{ loadedBreadcrumbs && loadedBreadcrumbs.map((breadcrumb: any) => {
 			
-			return <Fragment key={breadcrumb.category_id || breadcrumb.id}><Link href={ breadcrumb.category_url_key || breadcrumb.url_key } >
+			return <Fragment key={breadcrumb.category_uid || breadcrumb.id}><Link href={ breadcrumb.category_url_key || breadcrumb.url_key } >
 				{ breadcrumb.category_name || breadcrumb.name }
 			</Link>
 			<div className={styles.divider}>/</div>

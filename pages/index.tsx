@@ -27,6 +27,8 @@ const Home: NextPage = () => {
       <main style={{padding: '70px 0 0'}}>
         <h1>Home</h1>
         { authenticated && <Link href="/shop">Shop</Link> }
+
+        <p>Home Page Content</p>
       </main>
 
     </div>

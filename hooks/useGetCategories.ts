@@ -37,9 +37,50 @@ query Categories($filters: CategoryFilterInput) {
 }
 `;
 
+const GET_CATEGORIES_2 = gql`
+query Categories(
+	$filters: CategoryFilterInput, 
+	$pageSize: Int, 
+	$currentPage: Int) {
+	categories(
+	  filters: $filters, 
+	  pageSize: $pageSize, 
+	  currentPage: $currentPage) {
+	  	items {
+			name
+	  		display_mode
+			image
+			uid
+			breadcrumbs {
+				category_url_path
+				category_url_key
+				category_uid
+				category_name
+				category_level
+			}
+			children {
+				uid
+				name
+				display_mode
+				url_key
+				children {
+					level
+					name
+					path
+					uid
+					product_count
+					image
+					url_key
+				}
+			}
+	  	}
+	}
+} 
+`;
+
 const useGetCategories = ( url: any ) => {
   
-  return useQuery( GET_CATEGORIES, 
+  return useQuery( GET_CATEGORIES_2, 
 	{ 
 		errorPolicy: "ignore", 
 		variables: url ? {

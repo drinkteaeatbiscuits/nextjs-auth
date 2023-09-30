@@ -22,9 +22,9 @@ const ProductFilters = (props:any) => {
 		</div>
 		
 			
-			{ categories?.categoryList.length > 0 && categories?.categoryList[0]?.children.length > 0 && <div className={styles.categories}>
+			{ categories?.categories.items.length > 0 && categories?.categories.items[0]?.children.length > 0 && <div className={styles.categories}>
 				<p>Categories</p> 
-				{ categories?.categoryList[0]?.children?.map((category:any) => {
+				{ categories?.categories.items[0]?.children?.map((category:any) => {
 				return <Link key={category.url_key} href={category.url_key}><p>{category.name}</p></Link>
 				})
 				}

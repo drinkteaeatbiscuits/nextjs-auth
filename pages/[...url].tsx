@@ -30,13 +30,12 @@ const CategoryPage = (props: any) => {
 	const [sortProducts, setSortProducts] = useState<any>({ position: 'DESC' });
 	const [totalProducts, setTotalProducts] = useState<any>(null);
 	const [showFiltersOverlay, setShowFiltersOverlay] = useState(false);
-	
 
 	const updateCategoryArray = () => {
 		const categoryArray: any[] = []
 			
-			categories?.categoryList.map((category:any) => {
-				categoryArray.push( category.id.toString() )
+			categories?.categories?.items.map((category:any) => {
+				categoryArray.push( category.uid.toString() )
 			})
 		
 		setCategoriesArray(categoryArray);
@@ -57,7 +56,7 @@ const CategoryPage = (props: any) => {
 		
 		categoriesArray && refetchProducts({
 			filter: {
-				category_id: {
+				category_uid: {
 					eq: null,
 					in: categoriesArray,
 				},
@@ -86,18 +85,12 @@ const CategoryPage = (props: any) => {
 
 	useEffect(() => {
 
-		// sortProducts && refetchProducts({
-		// 	sort: sortProducts,
-		// });
-
-		// setLoadedProducts( null );
-		// setTotalProducts( null );
 		setPageNumber(1);
 		sortProducts && refetchProducts({
 			currentPage: 1,
 			pageSize: 9,
 			filter: {
-				category_id: {
+				category_uid: {
 					eq: null,
 					in: categoriesArray,
 				},
@@ -121,7 +114,8 @@ const CategoryPage = (props: any) => {
 
 	const getMoreProducts = async () => {
 
-		//  console.log('get more');
+		// console.log('get more');
+		// console.log(categoriesArray);
 
 		if( categoriesArray ) {
 
@@ -129,18 +123,20 @@ const CategoryPage = (props: any) => {
 
 			await fetchMoreProducts({
 					variables: { 
-						"currentPage": nextPageNumber,
-						"pageSize": 9,
-						"filter": {
-							"category_id": {
-								"eq": null,
-								"in": categoriesArray
+						currentPage: nextPageNumber,
+						pageSize: 9,
+						filter: {
+							category_uid: {
+								eq: null,
+								in: categoriesArray
 							}
 						},
-						"sort": sortProducts,
+						sort: sortProducts,
 							
 						}
 					}).then((data) => {
+
+						// console.log(data);
 
 						data.data?.products && setLoadedProducts((test:any) => { 
 			
@@ -148,7 +144,7 @@ const CategoryPage = (props: any) => {
 							const itemsArray = data.data.products.items.reduce(
 								(acc:any, item:any) => {
 								
-								  return acc.filter( (e:any) => e.id === item?.id ).length > 0 ? acc : [...acc, item]
+								  return acc.filter( (e:any) => e.uid === item?.uid ).length > 0 ? acc : [...acc, item]
 								},
 								[...test.items]
 							  )
@@ -161,7 +157,7 @@ const CategoryPage = (props: any) => {
 									items: itemsArray,
 									page_info: data.data.products.page_info,
 									total_count: data.data.products.total_count,
-									}
+								}
 									 
 
 					});
@@ -176,13 +172,6 @@ const CategoryPage = (props: any) => {
 		
 	  };
 
-	// console.log(products);
-
-	// console.log(pageNumber);
-	// console.log(categories);
-	// {categories?.categoryList[0]?.display_mode === null && console.log( 'test null')}
-	// {categories?.categoryList[0]?.display_mode === 'PRODUCTS' && console.log( 'test products')}
-	// console.log(categories?.categoryList[0]?.display_mode);
   
 	return <div className={styles.container}>
 		<Header />
@@ -190,11 +179,11 @@ const CategoryPage = (props: any) => {
 
 			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} />
 
-			<Breadcrumbs url={url} breadcrumbs={categories?.categoryList[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categoryList[0]?.name || product?.products?.items[0]?.name} />
+			<Breadcrumbs url={url} breadcrumbs={categories?.categories.items[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categories.items[0]?.name || product?.products?.items[0]?.name} />
 			
-			<h1>{categories?.categoryList[0]?.name}</h1>
+			<h1>{categories?.categories.items[0]?.name}</h1>
 
-				{ categories?.categoryList[0]?.display_mode !== 'PAGE' && <div className="">
+				{ categories?.categories.items[0]?.display_mode !== 'PAGE' && <div className="">
 			
 				{ totalProducts && <p>{totalProducts} products found</p> }
 
@@ -215,11 +204,11 @@ const CategoryPage = (props: any) => {
 
 			</div> }
 
-			{ categories?.categoryList[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
+			{ categories?.categories.items[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
 			
-			{ categories?.categoryList[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
+			{ categories?.categories.items[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
 			
-			{ categories?.categoryList[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
+			{ categories?.categories.items[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
 	  		
 
 			{ product?.products?.items && product?.products?.items?.length > 0 && <Product product={ product } /> }

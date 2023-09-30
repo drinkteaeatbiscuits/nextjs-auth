@@ -5,14 +5,14 @@ const GET_PRODUCTS = gql`
 		$currentPage: Int, 
 		$pageSize: Int, 
 		$filter: ProductAttributeFilterInput,
-		$sort: ProductAttributeSortInput) {
+		$sort: ProductAttributeSortInput ) {
 		products(
 			currentPage: $currentPage, 
 			pageSize: $pageSize,
 			filter: $filter,
 			sort: $sort ) {
 				items {
-					id
+					uid
 					name
 					sku
 					url_key
@@ -35,7 +35,6 @@ const GET_PRODUCTS = gql`
 								default_label
 								label
 								store_label
-								
 								use_default_value
 							}
 							uid
@@ -56,10 +55,10 @@ const GET_PRODUCTS = gql`
 								uid
 								only_x_left_in_stock
 								image {
-								disabled
-								label
-								position
-								url
+									disabled
+									label
+									position
+									url
 								}
 								thumbnail {
 									disabled
@@ -266,7 +265,7 @@ const useGetProducts = ( props: any ) => {
 			"currentPage": currentPage ? currentPage : 1,
 			"pageSize": pageSize ? pageSize : 9,
 			"filter": {
-				"category_id": {
+				"category_uid": {
 					"eq": null,
 					"in": category_id ? category_id : null
 				}

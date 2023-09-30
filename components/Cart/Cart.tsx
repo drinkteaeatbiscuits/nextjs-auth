@@ -25,7 +25,7 @@ const Cart = (props:any) => {
 
 	const handleRemoveFromCart = async (event: any, cart_item_uid: any) => {
 
-		console.log(cart_item_uid);
+		// console.log(cart_item_uid);
 
 		event.preventDefault();
 
@@ -99,9 +99,10 @@ const Cart = (props:any) => {
 		<div className={styles.cartItems}>
 			{!cartLoading && cartData?.customerCart?.items.length > 0 && cartData?.customerCart?.items?.map((item: any) => {
 
-				return <div className={styles.cartItem + ' ' + isProductRemoving(item?.uid)} key={item.id}>
+				return <div className={styles.cartItem + ' ' + isProductRemoving(item?.uid)} key={item.uid}>
 					<div className={styles.imageColumn}>
-						<div className={styles.cartItemImageWrap}>{item?.product?.image?.url && <Image width={100} height={100} src={item?.product?.image?.url} />}
+						<div className={styles.cartItemImageWrap}>
+						{item?.configured_variant?.image?.url ? <Image width={100} height={100} src={item?.configured_variant?.image?.url} /> : ( item?.product?.image?.url && <Image width={100} height={100} src={item?.product?.image?.url} /> ) }
 					</div>
 						
 					</div>
