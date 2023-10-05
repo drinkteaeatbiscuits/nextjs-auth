@@ -22,7 +22,7 @@ const Products = (props:any) => {
 		}
 	  });
 
-	// console.log(products);
+	console.log(products);
 	// console.log('test');
 
 	const layoutIconActive = (layoutOption:any) => {

@@ -37,6 +37,7 @@ const ProductDetails = (props:any) => {
 		await addToCart({variables: data}).then((res) => {
 			console.log(res);
 			currentTarget.classList.remove(styles.addingToCart);
+			setQuantity(1);
 		});
 	}
 
@@ -63,6 +64,7 @@ const ProductDetails = (props:any) => {
 		await addConfigurableProductsToCart({variables: data}).then((res) => {
 			console.log(res);
 			currentTarget.classList.remove(styles.addingToCart);
+			setQuantity(1);
 		});
 	}
 

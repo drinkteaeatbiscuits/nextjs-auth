@@ -54,6 +54,7 @@ const GET_PRODUCTS = gql`
 								sku
 								uid
 								only_x_left_in_stock
+								stock_status
 								image {
 									disabled
 									label
