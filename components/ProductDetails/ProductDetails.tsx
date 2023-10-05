@@ -8,7 +8,7 @@ import { useReactiveVar } from '@apollo/client';
 import { useAddToBasket, useAddConfigurableProductsToCart } from '../../hooks/useAddToBasket';
 import cartId from '../../constants/cartId';
 
-const ProductDetails = (props:any) => {
+const ProductDetails = (props:any) => { 
 
 	const { product, productType, layout, productAttributes, productLink, parentSku } = props;
 
@@ -16,6 +16,10 @@ const ProductDetails = (props:any) => {
 	const yourCartId = useReactiveVar(cartId);
 	const { addToCart } = useAddToBasket();
 	const { addConfigurableProductsToCart } = useAddConfigurableProductsToCart();
+
+	// console.log(product.stock_status);
+
+	
 
 	const handleAddToCart = async (event: any, sku: String, quantity: Number, parentSku: any) => {
 
@@ -91,7 +95,7 @@ const ProductDetails = (props:any) => {
 					<div className={styles.addToCart}>
 						<div className={styles.price}><ProductPrice product={product} /></div>
 
-						<ProductQuantity value={quantity} setQuantity={setQuantity} />
+						{product.stock_status === 'IN_STOCK' && <><ProductQuantity value={quantity} setQuantity={setQuantity} />
 						{/* <input type="number" value={quantity || '1'} onChange={(e: any) => setQuantity(e.target.value)} /> */}
 						<button className={styles.addToBasket} onClick={(e) => parentSku ? handleAddConfigurableToCart(e, product?.sku, quantity, parentSku) : handleAddToCart(e, product?.sku, quantity, parentSku)}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="19.056" height="23.737" viewBox="0 0 19.056 23.737">
@@ -104,7 +108,9 @@ const ProductDetails = (props:any) => {
 									</circle>
 								</g>
 							</svg>
-						</button>
+						</button></>}
+
+						{product.stock_status === 'OUT_OF_STOCK' && <span className={styles.outOfStock}>Out of Stock</span>}
 					</div>
 
 				</div>

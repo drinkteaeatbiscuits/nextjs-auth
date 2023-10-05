@@ -1,21 +1,22 @@
 import { useState } from "react";
 import styles from './ProductCatalog.module.scss';
 import ProductDetails from "../ProductDetails/ProductDetails";
-
+ 
 const ProductCatalog = (props: any) => {
 	const { product, layout } = props;
 	const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
+
+	// console.log(product);
 
 	return <><div className={styles.product + ' product ' + styles[layout]}>
 
 		{ product && <div className={styles.productInner}>
 
-			{
-			// If Simple Product
+			{ // If Simple Product
 			!product?.variants && <ProductDetails layout={layout} product={product} productType={'simple'} />}
 
-			{
-			// If Product has variants
+
+			{ // If Product has variants
 			product?.variants && product?.variants?.length > 0 && <div className={styles.configurableProduct}>
 			
 				{ product?.variants?.slice(0, 1 ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant.product.uid} productAttributes={productVariant?.attributes} productType={'simple'} productLink={product.url_key} parentSku={product.sku} />)} 

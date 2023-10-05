@@ -63,6 +63,7 @@ query Categories(
 				name
 				display_mode
 				url_key
+				image
 				children {
 					level
 					name

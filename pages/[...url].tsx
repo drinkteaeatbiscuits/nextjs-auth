@@ -11,6 +11,7 @@ import useGetProduct from '../hooks/useGetProduct';
 import useGetProducts from '../hooks/useGetProducts';
 import styles from "../styles/Home.module.scss";
 import ProductFilters from '../components/ProductFilters/ProductFilters';
+import ChildCategoriesCarousel from '../components/ChildCategoriesCarousel/ChildCategoriesCarousel';
 
 
 const CategoryPage = (props: any) => {
@@ -177,11 +178,15 @@ const CategoryPage = (props: any) => {
 		<Header />
 		<main style={{paddingTop: '70px'}}>
 
+
+
 			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} />
 
 			<Breadcrumbs url={url} breadcrumbs={categories?.categories.items[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categories.items[0]?.name || product?.products?.items[0]?.name} />
 			
 			<h1>{categories?.categories.items[0]?.name}</h1>
+
+			<ChildCategoriesCarousel categories={ categories?.categories?.items[0].children } />
 
 				{ categories?.categories.items[0]?.display_mode !== 'PAGE' && <div className="">
 			

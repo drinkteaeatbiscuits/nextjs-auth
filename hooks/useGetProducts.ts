@@ -17,6 +17,7 @@ const GET_PRODUCTS = gql`
 					sku
 					url_key
 					only_x_left_in_stock
+					stock_status
 					thumbnail {
 						disabled
 						label
@@ -116,6 +117,7 @@ const GET_PRODUCTS = gql`
 					
 					}
 					... on VirtualProduct {
+						stock_status
 						price_range {
 						  maximum_price {
 							discount {
@@ -147,6 +149,7 @@ const GET_PRODUCTS = gql`
 						}
 					}
 					... on SimpleProduct {
+						stock_status
 						price_range {
 						  	maximum_price {
 								discount {
@@ -184,6 +187,7 @@ const GET_PRODUCTS = gql`
 						}
 					}
 					... on VirtualProduct {
+						stock_status
 						price_range {
 						  	maximum_price {
 								discount {
