@@ -169,4 +169,8 @@
 	border-radius: 25px;
 	cursor: pointer;
 	margin: 5px;
+	&:disabled {
+		opacity: 0.6;
+		cursor: default;
+	}
 }

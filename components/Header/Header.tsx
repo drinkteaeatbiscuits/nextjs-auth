@@ -68,8 +68,10 @@ const Header = () => {
 						<svg xmlns="http://www.w3.org/2000/svg" width="21.207" height="26.416" viewBox="0 0 21.207 26.416">
 							<path d="M18.541,5.271H15.874a5.271,5.271,0,0,0-10.542,0H2.666A2.686,2.686,0,0,0,0,7.937V23.812a2.674,2.674,0,0,0,2.666,2.6H18.541a2.674,2.674,0,0,0,2.666-2.6V7.937A2.686,2.686,0,0,0,18.541,5.271ZM10.6,2.6A2.728,2.728,0,0,1,13.27,5.271H7.937A2.728,2.728,0,0,1,10.6,2.6Zm7.937,21.207H2.666V7.937H5.333v2.6a1.3,1.3,0,1,0,2.6,0v-2.6H13.27v2.6a1.3,1.3,0,1,0,2.6,0v-2.6h2.666Z" fill="#d6d7dd"/>
 						</svg>
-						{cartData?.customerCart?.total_quantity && <div className={styles.basketQuantity} style={{
-							}}>{ cartData?.customerCart?.total_quantity }</div>}
+						
+						{ cartData?.customerCart?.total_quantity > 0 && cartData?.customerCart?.total_quantity && <div className={styles.basketQuantity} style={{
+							}}>{ cartData?.customerCart?.total_quantity }</div> }
+
 					</div>
 				</div>
 	

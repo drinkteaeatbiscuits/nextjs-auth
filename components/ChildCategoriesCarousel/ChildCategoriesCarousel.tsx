@@ -6,7 +6,7 @@ const ChildCategoriesCarousel = (props:any) => {
 
 	const { categories } = props;
 
-	console.log(categories);
+	// console.log(categories);
 
 	return <div className={styles.categories}>
 		{categories?.length > 0 && categories.map((category:any) => {

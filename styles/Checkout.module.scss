@@ -1,0 +1,6 @@
+.checkoutSection {
+    display: none;
+    &.active {
+        display: block; 
+    }
+}

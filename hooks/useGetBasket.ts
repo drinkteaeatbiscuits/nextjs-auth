@@ -66,15 +66,30 @@ query Basket {
 	  }
 	  __typename
 	  prices {
-		grand_total {
+		subtotal_with_discount_excluding_tax {
+		  currency
+		  value
+		}
+		subtotal_including_tax {
 		  currency
 		  value
 		}
 		subtotal_excluding_tax {
-		  value
 		  currency
+		  value
+		}
+		grand_total {
+		  currency
+		  value
 		}
 		discounts {
+		  amount {
+			value
+			currency
+		  }
+		  label
+		}
+		applied_taxes {
 		  amount {
 			currency
 			value
@@ -82,7 +97,84 @@ query Basket {
 		  label
 		}
 	  }
+	  shipping_addresses {
+		uid
+        postcode
+        city
+        company
+        firstname
+        lastname
+        region {
+          code
+          label
+          region_id
+        }
+        street
+
+		selected_shipping_method {
+		  amount {
+			currency
+			value
+		  }
+		  price_excl_tax {
+			currency
+			value
+		  }
+		  price_incl_tax {
+			currency
+			value
+		  }
+		  method_title
+		  method_code
+		  carrier_title
+		  carrier_code
+		}
+		city
+      	company
+		country {
+			code
+			label
+		}
+		customer_notes
+		firstname
+		lastname
+		postcode
+		street
+		telephone
+		uid
+		available_shipping_methods {
+			amount {
+			  currency
+			  value
+			}
+			available
+			carrier_code
+			carrier_title
+			error_message
+			method_code
+			method_title
+			price_excl_tax {
+			  currency
+			  value
+			}
+			price_incl_tax {
+			  currency
+			  value
+			}
+		  }
+	  }
+	  
 	  total_quantity
+	  available_payment_methods {
+		code
+		is_deferred
+		title
+	  }
+	  selected_payment_method {
+		code
+		purchase_order_number
+		title
+	  }
 	}
   }
 `;

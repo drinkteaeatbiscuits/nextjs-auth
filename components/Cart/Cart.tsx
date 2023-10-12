@@ -145,7 +145,7 @@ const Cart = (props:any) => {
 		</div>
 		<div className={styles.cartBottom}>
 			<p className={styles.cartSubtotal}>Cart Subtotal: <span className={styles.bold}>{ cartData?.customerCart?.prices?.subtotal_excluding_tax?.value && cartData?.customerCart?.prices?.subtotal_excluding_tax?.currency && <IntlProvider locale="en" defaultLocale="en"><FormattedNumber value={cartData?.customerCart?.prices?.subtotal_excluding_tax?.value} style="currency" currency={cartData?.customerCart?.prices.subtotal_excluding_tax.currency} /></IntlProvider> }</span></p>	
-			<Link href={'/checkout'}><button className={styles.goToCheckout} >Proceed to Checkout</button></Link>
+			{ cartData?.customerCart?.items?.length === 0 ? <button className={styles.goToCheckout} disabled={true} >Proceed to Checkout</button> : <Link href={'/checkout'}><button className={styles.goToCheckout} >Proceed to Checkout</button></Link>}
 
 
 		</div>
