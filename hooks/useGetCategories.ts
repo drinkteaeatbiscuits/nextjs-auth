@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 
 const GET_CATEGORIES = gql`
 query Categories($filters: CategoryFilterInput) {
@@ -81,7 +81,7 @@ query Categories(
 
 const useGetCategories = ( url: any ) => {
   
-  return useQuery( GET_CATEGORIES_2, 
+  return useLazyQuery( GET_CATEGORIES_2, 
 	{ 
 		errorPolicy: "ignore", 
 		variables: url ? {

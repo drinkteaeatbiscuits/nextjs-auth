@@ -21,7 +21,7 @@ const CategoryPage = (props: any) => {
 
 	const [ pageNumber, setPageNumber ] = useState(1);
 
-	const { data: categories } = useGetCategories( url );
+	const [getCategories, { data: categories }] = useGetCategories( url );
 	// const { data: products, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
 	const { data: product, refetch: refetchProduct } = useGetProduct( { url_key: url } );
 	const { data: products, fetchMore: fetchMoreProducts, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null, sort: { position: 'DESC' } } );
@@ -29,8 +29,11 @@ const CategoryPage = (props: any) => {
 	const [loadedProducts, setLoadedProducts] = useState<any>(null);
 	const [categoriesArray, setCategoriesArray] = useState<any>(null);
 	const [sortProducts, setSortProducts] = useState<any>({ position: 'DESC' });
+	const [activeFilters, setActiveFilters] = useState<any>({});
 	const [totalProducts, setTotalProducts] = useState<any>(null);
 	const [showFiltersOverlay, setShowFiltersOverlay] = useState(false);
+
+	// console.log(products?.products?.aggregations);
 
 	const updateCategoryArray = () => {
 		const categoryArray: any[] = []
@@ -42,6 +45,12 @@ const CategoryPage = (props: any) => {
 		setCategoriesArray(categoryArray);
 
 	}
+
+	useEffect(() => {
+		
+		url && getCategories();
+
+	}, [url]);
 
 
 	useEffect(() => {
@@ -61,6 +70,7 @@ const CategoryPage = (props: any) => {
 					eq: null,
 					in: categoriesArray,
 				},
+				...activeFilters
 			},
 			sort: sortProducts,
 		});
@@ -95,11 +105,43 @@ const CategoryPage = (props: any) => {
 					eq: null,
 					in: categoriesArray,
 				},
+				...activeFilters
 			},
 			sort: sortProducts,
 		});
 
 	}, [ sortProducts ]);
+
+
+
+// console.log(categoriesArray);
+
+	useEffect(() => {
+
+		// console.log(activeFilters);
+
+		refetchProducts({
+			currentPage: 1,
+			pageSize: 9,
+			filter: {
+				category_uid: {
+					eq: null,
+					in: categoriesArray,
+				},
+				...activeFilters
+			},
+			sort: sortProducts,
+		});
+
+
+
+		// console.log(combinedFilters)
+
+
+	}, [activeFilters]);
+
+
+
 
 
 	const changeSortOption = (name:any, order:any) => {
@@ -130,7 +172,8 @@ const CategoryPage = (props: any) => {
 							category_uid: {
 								eq: null,
 								in: categoriesArray
-							}
+							},
+							...activeFilters
 						},
 						sort: sortProducts,
 							
@@ -179,8 +222,7 @@ const CategoryPage = (props: any) => {
 		<main style={{paddingTop: '70px'}}>
 
 
-
-			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} />
+			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} filters={products?.products?.aggregations} activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
 
 			<Breadcrumbs url={url} breadcrumbs={categories?.categories.items[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categories.items[0]?.name || product?.products?.items[0]?.name} />
 			

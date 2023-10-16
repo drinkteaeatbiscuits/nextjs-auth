@@ -7,13 +7,14 @@
 	height: 100%;
 	background-color: #fff;
 	z-index: 99;
-	padding: 70px 16px 0;
+	padding: 70px 16px 20px;
 	&.showFilters {
-		display: block;
+		display: flex;
+		flex-direction: column;
 	}
 	.filtersTop {
 		display: flex;
-		padding: 16px 0;
+		padding: 16px 0 0;
 		.filtersTitle {
 			flex-grow: 1;
 		}
@@ -27,6 +28,49 @@
 			svg {
 				display: block;
 			}
+		}
+	}
+	.categories {
+		flex: 1 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		margin: 0 0 8px;
+		p {
+			margin: 0 0 8px;
+		}
+		.categoriesInner {
+			overflow: scroll;
+		}
+	}
+	.filterSection {
+		flex: 2 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		margin: 0 0 8px;
+		p {
+			margin: 0 0 8px;
+		}
+		.filterOptions {
+			overflow: scroll;
+			.filterOption {
+				display: flex;
+				align-items: center;
+			}
+			.checkbox {
+				width: 18px;
+				height: 18px;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				margin: 0 8px 0 0;
+				&.checked {
+					background-color: #000;
+				}
+			}
+		}
+		&.wye_brands {
+			flex: 1 1;
 		}
 	}
 }

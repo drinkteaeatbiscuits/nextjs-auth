@@ -21,9 +21,9 @@ const ReviewOrder = (props:any) => {
     const [showCartItems, setShowCartItems] = useState(false); 
     const [placingOrder, setPlacingOrder] = useState(false);
     const [orderNumber, setOrderNumber] = useState(null);
-    const {placeOrder} = usePlaceOrder(); 
+    const { placeOrder } = usePlaceOrder(); 
 
-    console.log(cartData);
+    // console.log(cartData);
     
     const handlePlaceOrder = async (event: any) => {
 
@@ -45,7 +45,7 @@ const ReviewOrder = (props:any) => {
             setPlacingOrder(false); */
 
             res && router.push({ pathname: '/thankyou', query: { order_number: res.data.placeOrder.order.order_number } });
-            
+
 		});
 
 	}

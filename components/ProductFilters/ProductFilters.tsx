@@ -1,9 +1,36 @@
 import Link from 'next/link';
 import styles from './ProductFilters.module.scss';
+import { useState } from 'react';
 
 const ProductFilters = (props:any) => {
 	
-	const { categories, showFilters, setShowFiltersOverlay } = props;
+	const { categories, showFilters, setShowFiltersOverlay, filters, activeFilters, setActiveFilters } = props;
+
+	// const [activeFilters, setActiveFilters] = useState<any>(null);
+
+	const handleEditFilters = (attributeCode:any, optionValue:any) => {
+		let updatedActiveFilters: any = {}
+		updatedActiveFilters = {...activeFilters};
+
+		!updatedActiveFilters[attributeCode] && ( updatedActiveFilters[attributeCode] = {in: []} );
+
+		if(updatedActiveFilters[attributeCode].in.includes(optionValue)){
+			// console.log('remove ' + optionValue);
+			updatedActiveFilters[attributeCode].in = updatedActiveFilters[attributeCode].in.filter((item:any) => item !== optionValue);
+		}  else{
+			// console.log('add ' + optionValue);
+			updatedActiveFilters[attributeCode].in.push(optionValue);
+		}
+
+		// console.log(updatedActiveFilters);
+		
+
+		setActiveFilters(updatedActiveFilters);
+
+		
+	}
+
+	console.log(filters);
 
 	const showFiltersOverlay = () => {
 		return showFilters && styles.showFilters
@@ -24,13 +51,32 @@ const ProductFilters = (props:any) => {
 			
 			{ categories?.categories.items.length > 0 && categories?.categories.items[0]?.children.length > 0 && <div className={styles.categories}>
 				<p>Categories</p> 
-				{ categories?.categories.items[0]?.children?.map((category:any) => {
-				return <Link key={category.url_key} href={category.url_key}><p>{category.name}</p></Link>
-				})
-				}
+				<div className={styles.categoriesInner}>
+					{ categories?.categories.items[0]?.children?.map((category:any) => {
+					return <Link key={category.url_key} href={category.url_key}><div>{category.name}</div></Link>
+					})
+					}
 
+
+				</div>
+				
 			</div>
 			}
+
+			{filters && filters.map((filter:any) => {
+
+				if(filter.attribute_code === 'category_uid' || filter.attribute_code === 'price' || filter.attribute_code === 'brand'){ return; }
+
+				return <div className={styles.filterSection + ' ' + styles[filter.attribute_code]} key={filter.attribute_code}>
+					<p>{filter.label}</p>
+					<div className={styles.filterOptions}>
+						{filter.options.map((option:any) => <div key={option.value} className={styles.filterOption} onClick={() => handleEditFilters(filter.attribute_code, option.value)}>
+							<div className={styles.checkbox + ' ' + (activeFilters[filter.attribute_code]?.in?.includes(option.value) && styles.checked)} ></div>
+							<label>{option.label} {option.count}</label>
+						</div>)}
+					</div>
+				</div>
+			})}
 
 	</div>
 }

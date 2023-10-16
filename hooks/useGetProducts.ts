@@ -253,9 +253,20 @@ const GET_PRODUCTS = gql`
 					  value
 					}
 				},		  
-			
+				aggregations {
+					attribute_code
+					count
+					label
+					options {
+					  count
+					  label
+					  value
+					}
+					position
+				  }
 			
 			}
+			
   	}
 `;
 
