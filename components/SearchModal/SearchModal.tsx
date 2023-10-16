@@ -38,7 +38,7 @@ const SearchModal = (props:any) => {
 	
 	// }, [searchTerm]);
 
-	console.log(products);
+	// console.log(products);
 
 
 	return <div className={style.searchModal} style={{

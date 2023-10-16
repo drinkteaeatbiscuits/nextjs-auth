@@ -6,6 +6,7 @@ import authenticatedVar from "../constants/authenticated";
 import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
 import Header from "../components/Header/Header";
+import Notifications from "../components/Notifications/Notifications";
 
 const Login = () => {
 
@@ -31,6 +32,7 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
 		  <Header />
+      <Notifications />
       <main style={{paddingTop: '70px'}}>
         <h1 className={styles.title}>Login</h1>
 

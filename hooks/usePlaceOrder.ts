@@ -16,10 +16,11 @@ export const usePlaceOrder = () => {
 
   const [placeOrder, { data, loading, error }] = useMutation( 
     PLACE_ORDER, { 
-      errorPolicy: "ignore",
+      errorPolicy: "all",
       onCompleted(data, res) {
 
         console.log(data);
+        
 
         client.refetchQueries({ include: "active" });
         

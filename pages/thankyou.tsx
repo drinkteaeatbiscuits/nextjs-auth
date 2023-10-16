@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import useGetOrder from "../hooks/useGetOrder";
 import { FormattedNumber, IntlProvider } from "react-intl";
 import { useEffect } from "react";
+import Notifications from "../components/Notifications/Notifications";
 
 
 const Thankyou: NextPage = (props:any) => {
@@ -32,6 +33,7 @@ const Thankyou: NextPage = (props:any) => {
 
 	return <div className={homeStyles.container}>
 		<Header />
+		<Notifications />
 
 		<main style={{padding: '70px 0 0'}}>
         <h1>Thankyou</h1>

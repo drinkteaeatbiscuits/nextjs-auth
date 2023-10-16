@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Header from "../components/Header/Header";
 import authenticatedVar from "../constants/authenticated";
 import styles from "../styles/Home.module.scss";
+import Notifications from "../components/Notifications/Notifications";
 
 const Home: NextPage = () => {
 
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
       
 
       <Header />
+      <Notifications />
 
       <main style={{padding: '70px 0 0'}}>
         <h1>Home</h1>

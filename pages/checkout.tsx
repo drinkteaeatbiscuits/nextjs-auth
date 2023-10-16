@@ -13,13 +13,14 @@ import useGetBasket from "../hooks/useGetBasket";
 import useGetAddresses from "../hooks/useGetAddresses";
 import { useSetShippingAddress } from "../hooks/useSetShippingAddress";
 import { useSetShippingMethodsOnCart } from "../hooks/useSetShippingMethodsOnCart";
+import Notifications from "../components/Notifications/Notifications";
 
 const Checkout: NextPage = () => {
 
 	// const {data, error, refetch, loading} = useGetBasket();
 
 	// console.log(data);
-	const { data: cartData, error, refetch, loading: cartLoading } = useGetBasket();
+	const [getBasket, { data: cartData, error, refetch, loading: cartLoading }] = useGetBasket();
 	const { data: addresses, loading: addressesLoading } = useGetAddresses();
 	
 	const [ selectedShippingAddress, setSelectedShippingAddress ] = useState<any>(null);
@@ -37,7 +38,7 @@ const Checkout: NextPage = () => {
 	
 	useEffect(() => {
 
-		console.log('select address');
+		// console.log('select address');
 
 		// select shipping address
 		if( yourCartId && !selectedShippingAddress){
@@ -69,7 +70,7 @@ const Checkout: NextPage = () => {
 		// select shipping method
 		if( selectedShippingAddress ){
 			
-			console.log('set shipping method');
+			// console.log('set shipping method');
 			
 			if(!selectedShippingMethod){
 
@@ -98,7 +99,7 @@ const Checkout: NextPage = () => {
 
 		if(selectedShippingMethod){
 
-			console.log('set payment method');
+			// console.log('set payment method');
 
 			if(!paymentMethod){
 
@@ -186,8 +187,13 @@ const Checkout: NextPage = () => {
 	// console.log(selectedShippingAddress);
 	// console.log(selectedShippingMethod);
 
+	useEffect(() => {
+		!cartData && getBasket();
+	}, [yourCartId]);
+
 	return <div className={homeStyles.container}>
 		<Header />
+		<Notifications />
 
 		<main style={{padding: '70px 0 0'}}>
         <h1>Checkout</h1>

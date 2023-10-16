@@ -1,0 +1,46 @@
+.notificationsWrap {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	padding: 12px;
+}
+
+.notification {
+	display: flex;
+	align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0,0,0,0.8);
+    padding: 12px 14px;
+    color: #e7e7e7;
+    border-radius: 8px;
+    line-height: 1.4;
+    border: #4c4c4c solid 1px;
+    font-weight: 400;
+    font-size: 0.95rem;
+    min-height: 70px;
+	p {
+		margin: 0;
+		padding: 0 0 3px;
+	}
+	animation: fadeNotification 0.25s;
+}
+
+.notificationIcon {
+	padding: 8px 12px 8px 0;
+	svg {
+		display: block;
+	}
+}
+
+@keyframes fadeNotification {
+	from {
+		opacity: 0;
+		transform: translate(0, 40px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}

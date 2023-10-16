@@ -12,6 +12,7 @@ import useGetProducts from '../hooks/useGetProducts';
 import styles from "../styles/Home.module.scss";
 import ProductFilters from '../components/ProductFilters/ProductFilters';
 import ChildCategoriesCarousel from '../components/ChildCategoriesCarousel/ChildCategoriesCarousel';
+import Notifications from '../components/Notifications/Notifications';
 
 
 const CategoryPage = (props: any) => {
@@ -219,6 +220,7 @@ const CategoryPage = (props: any) => {
   
 	return <div className={styles.container}>
 		<Header />
+		<Notifications />
 		<main style={{paddingTop: '70px'}}>
 
 

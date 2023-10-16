@@ -5,8 +5,6 @@ import authenticatedVar from "./authenticated";
 import { API_URL } from "./urls";
 import Cookies from 'js-cookie';
 
-
-
 const httpLink = new HttpLink({
     uri: `${API_URL}/graphql`,
     credentials: "include",
@@ -29,7 +27,11 @@ const logoutLink = onError(({ graphQLErrors }) => {
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   
-  const token = Cookies.get('customerToken');
+  let token = Cookies.get('customerToken');
+
+  if(token === 'undefined'){
+    token = process.env.NEXT_PUBLIC_API_TOKEN
+  }
 
   operation.setContext({
       headers: {

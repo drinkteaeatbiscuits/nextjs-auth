@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 import { useReactiveVar } from '@apollo/client';
 import cartId from '../../constants/cartId';
+import notification from '../../constants/notification';
 import router from 'next/router';
 
 
@@ -23,7 +24,7 @@ const ReviewOrder = (props:any) => {
     const [orderNumber, setOrderNumber] = useState(null);
     const { placeOrder } = usePlaceOrder(); 
 
-    // console.log(cartData);
+    
     
     const handlePlaceOrder = async (event: any) => {
 
@@ -40,13 +41,27 @@ const ReviewOrder = (props:any) => {
 		  };
 		
 		await placeOrder({variables: data}).then((res:any) => {
-			console.log(res);
+
+            console.log(res);
+
+            if(res.errors?.length > 0){
+                
+                console.log(res.errors);
+                notification({notificationType: 'error', message: res.errors[0].message});
+    
+                setPlacingOrder(false);
+
+            }else{
+
+                res.data?.placeOrder && router.push({ pathname: '/thankyou', query: { order_number: res.data?.placeOrder?.order?.order_number } });
+
+            }
+			
             /* setOrderNumber(res.data.placeOrder.order.order_number);
             setPlacingOrder(false); */
 
-            res && router.push({ pathname: '/thankyou', query: { order_number: res.data.placeOrder.order.order_number } });
-
-		});
+           
+		})
 
 	}
 

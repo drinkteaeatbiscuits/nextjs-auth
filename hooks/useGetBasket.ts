@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 import cartId from "../constants/cartId";
 
 const GET_BASKET = gql`
@@ -184,7 +184,7 @@ const useGetBasket = () => {
   
 //   return useQuery( GET_BASKET, { errorPolicy: "ignore" } );
 
-	const getBasket = useQuery( 
+	const getBasket = useLazyQuery( 
 		GET_BASKET, { 
 		errorPolicy: "ignore"
 		});
