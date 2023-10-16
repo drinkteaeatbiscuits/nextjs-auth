@@ -53,7 +53,7 @@ const SearchModal = (props:any) => {
 		<input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
 		{ products && products.products.items && products.products.items.map((product:any) => {
-			return <div className='product'><Link href={product.url_key}>{ product.name }</Link></div>
+			return <div className='product' key={product.uid}><Link href={product.url_key}>{ product.name }</Link></div>
 		})}
 		
 	</div>
