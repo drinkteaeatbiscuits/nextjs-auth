@@ -91,7 +91,7 @@ const Product = (props:any) => {
 				
 				{ theProduct.variants && theProduct.variants.length > 0 ? theProduct.variants.map((productVariant:any, index:any) => {
 				
-				return <div className="configurable-product-add-to-cart" key={productVariant.attributes[0].label}>
+				return productVariant.attributes.length > 0 && <div className="configurable-product-add-to-cart" key={productVariant.attributes[0].label}>
 					<p>{productVariant.attributes[0].label}</p>
 					<input type="number" value={variantQuantity[index] || ''} onChange={(e:any) => { let newVariantQuantity:any = [...variantQuantity]; newVariantQuantity[index] = e.target.value; setVariantQuantity( newVariantQuantity ) }}  />
 					<button onClick={(e) => handleAddToCart(e, productVariant.product.sku, variantQuantity[index])}>Add to Basket</button>

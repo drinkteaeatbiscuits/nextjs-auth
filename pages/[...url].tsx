@@ -228,7 +228,7 @@ const CategoryPage = (props: any) => {
 			
 			<h1>{categories?.categories.items[0]?.name}</h1>
 
-			<ChildCategoriesCarousel categories={ categories?.categories?.items[0].children } />
+			{categories?.categories?.items[0]?.children && <ChildCategoriesCarousel categories={ categories?.categories?.items[0].children } />}
 
 				{ categories?.categories.items[0]?.display_mode !== 'PAGE' && <div className="">
 			
