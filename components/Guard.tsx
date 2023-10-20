@@ -37,7 +37,7 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
 
     customer && !customer?.customer && Cookies.remove('customerToken');
 
-    console.log(customer);
+    // console.log(customer);
 
   }, [customer]);
 
@@ -114,6 +114,7 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
       ) : (
         <>{!error && customer && children}</>
       )}
+      { !excludedRoutes?.includes(router.pathname) && error && <p>error</p> }
     </>
   );
 };

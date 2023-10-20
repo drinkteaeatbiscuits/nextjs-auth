@@ -25,8 +25,9 @@ const SearchModal = (props:any) => {
 		threshold: 0,
 		rootMargin: "300px",
 		onChange: (inView, entry) => {
-			// console.log("in view");
-			inView && pageNumber < products?.products?.page_info?.total_pages && setPageNumber( pageNumber + 1 );
+			// console.log(inView);
+			
+			inView && pageNumber < products?.products?.page_info?.total_pages && handleGetMoreProducts();
 		}
 	  });
 
@@ -87,7 +88,7 @@ const SearchModal = (props:any) => {
 
 						loadedProducts && data.data?.products && setLoadedProducts((test:any) => { 
 
-							console.log(test);
+							// console.log(test);
 
 							const itemsArray = data?.data?.products?.items.reduce(
 								(acc:any, item:any) => {
@@ -121,11 +122,11 @@ const SearchModal = (props:any) => {
 		{/* <div className={style.closeWrap}>
 			<div className={style.close} style={{cursor: 'pointer'}} onClick={() => { setShowSearchModal(false) }}>Close</div>
 		</div> */}
-		<div className="">
+		<div className={style.searchInputWrap}>
 			<input className={style.searchInput} placeholder={'Search'} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 				
 		</div>
-		<div className={style.searchResults}>
+		<div className={style.searchResults + ' ' + (loadedProducts && loadedProducts.items && style.productsLoaded)}>
 			{/* { products && products.products.items && products.products.items.map((product:any) => {
 				return <div className='product' key={product.uid}><Link href={product.url_key}>{ product.name }</Link></div>
 			})} */}
@@ -134,8 +135,9 @@ const SearchModal = (props:any) => {
 			})}
 
 
-			<button onClick={() => handleGetMoreProducts()}>Load More</button>
-			{/* { searchTerm !== '' && pageNumber < products?.products?.page_info?.total_pages && <div ref={ref} className={style.loadMore} onClick={() => setPageNumber( pageNumber + 1 ) }>
+			{/* { loadedProducts && loadedProducts.items && <button onClick={() => handleGetMoreProducts()}>Load More</button> } */}
+
+			{ loadedProducts && loadedProducts.items && pageNumber < products?.products?.page_info?.total_pages && <div ref={ref} className={style.loadMore} onClick={() => setPageNumber( pageNumber + 1 ) }>
 					
 					<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: 'auto', background: 'none', display: 'block', shapeRendering: 'auto'}} width="40px" height="40px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 						<circle cx="50" cy="50" fill="none" stroke="#e2e7eb" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">
@@ -144,7 +146,7 @@ const SearchModal = (props:any) => {
 					</svg>
 
 					<p style={{textAlign: 'center', color: '#a3afb0'}}>Load More</p>
-				</div> } */}
+				</div> }
 		</div>
 	</div>
 }

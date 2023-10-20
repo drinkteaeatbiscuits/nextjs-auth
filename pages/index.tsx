@@ -7,11 +7,24 @@ import Header from "../components/Header/Header";
 import authenticatedVar from "../constants/authenticated";
 import styles from "../styles/Home.module.scss";
 import Notifications from "../components/Notifications/Notifications";
+import ChildCategoriesCarousel from "../components/ChildCategoriesCarousel/ChildCategoriesCarousel";
+import useGetCategories from "../hooks/useGetCategories";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
 
   const router = useRouter();
 	const authenticated = useReactiveVar(authenticatedVar);
+
+  const [getCategories, { data: categories }] = useGetCategories( ['shop'] );
+  
+  useEffect(() => {
+		
+		!categories && getCategories();
+
+	}, []);
+
+  // console.log(categories);
   
   return (
     <div className={styles.container}>
@@ -30,7 +43,9 @@ const Home: NextPage = () => {
         <h1>Home</h1>
         { authenticated && <Link href="/shop">Shop</Link> }
 
-        <p>Home Page Content</p>
+        {categories && <ChildCategoriesCarousel categories={ categories?.categories?.items[0].children } />}
+
+
       </main>
 
     </div>

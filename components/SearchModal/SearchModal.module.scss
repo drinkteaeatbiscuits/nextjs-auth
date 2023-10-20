@@ -3,15 +3,16 @@
 	top: 0;
 	left: 0;
 	height: auto;
-	background: #f2f2f2;
+	background: #fff;
 	z-index: 99;
 	width: 100%;
-	padding: 86px 16px 16px;
+	padding: 70px 0 0;
 	transition: 0.3s transform cubic-bezier(0.46, 0.03, 0.52, 0.96);
 	display: flex;
 	flex-direction: column;
 	max-height: 100%;
 	overflow: hidden;
+	border-bottom: 1px solid #d7d7d7;
 }
 
 .closeWrap {
@@ -22,6 +23,10 @@
 
 .close {
 	font-size: 1rem;
+}
+
+.searchInputWrap {
+	padding: 16px;
 }
 
 .searchInput {
@@ -37,14 +42,22 @@
 
 .searchResults {
 	flex-grow: 1;
-	padding: 0 0 80px;
+	padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 	overflow: scroll;
+	&.productsLoaded {
+		padding: 0 16px 20px;
+	}
 	.product {
 		position: relative;
 		width: 100%;
 		display: block;
 	}
+}
+
+.loadMore {
+	padding: 24px 0 40px;
+	width: 100%;
 }

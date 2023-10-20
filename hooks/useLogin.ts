@@ -22,7 +22,7 @@ export const useLogin = () => {
       errorPolicy: "ignore",
       onCompleted(data, res) {
 
-        Cookies.set('customerToken', data.generateCustomerToken?.token, { secure: true });
+        Cookies.set('customerToken', data.generateCustomerToken?.token, { secure: true, expires: 365 });
         // document.cookie = `customerToken=${data.generateCustomerToken?.token}; path=/; secure=true http-only=true`;
         // authenticatedVar(true);
 

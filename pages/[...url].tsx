@@ -49,6 +49,7 @@ const CategoryPage = (props: any) => {
 
 	useEffect(() => {
 		
+		
 		url && getCategories();
 
 	}, [url]);
@@ -78,7 +79,7 @@ const CategoryPage = (props: any) => {
 
 	}, [categoriesArray]);
 
-	
+
 	useEffect(() => {
 
 		products && setLoadedProducts( products.products );
