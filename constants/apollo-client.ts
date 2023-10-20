@@ -29,7 +29,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   
   let token = Cookies.get('customerToken');
 
-  if(token === 'undefined'){
+  if(token === 'undefined' || !token){
     token = process.env.NEXT_PUBLIC_API_TOKEN
   }
 

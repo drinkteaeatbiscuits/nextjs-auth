@@ -39,7 +39,7 @@ const Header = () => {
 	}, [cartData?.customerCart?.id]);
 
 	useEffect(() => {
-
+		// console.log(authenticated);
 		authenticated && getBasket();
 
 	}, [authenticated])

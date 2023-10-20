@@ -78,6 +78,7 @@ const CategoryPage = (props: any) => {
 
 	}, [categoriesArray]);
 
+	
 	useEffect(() => {
 
 		products && setLoadedProducts( products.products );

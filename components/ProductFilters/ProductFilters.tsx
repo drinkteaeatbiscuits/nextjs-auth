@@ -30,7 +30,7 @@ const ProductFilters = (props:any) => {
 		
 	}
 
-	console.log(filters);
+	// console.log(filters);
 
 	const showFiltersOverlay = () => {
 		return showFilters && styles.showFilters

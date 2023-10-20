@@ -20,25 +20,62 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
   const token = Cookies.get('customerToken');
 
 
-   useEffect(() => {
-    
-    !customer && getMe();
+  useEffect(() => {
 
-    customer && customer?.customer && excludedRoutes?.includes(router.pathname) && router.push("/");
-    customer && customer?.customer && authenticatedVar(true);
+    !token && router.push("/login");
+    token === 'undefined' && router.push("/login");
+    
+    !customer && token && getMe();    
 
   }, [router.pathname]);
 
-
   useEffect(() => {
 
-    customer && customer?.customer && excludedRoutes?.includes(router.pathname) && router.push("/");
+    // customer && customer?.customer && excludedRoutes?.includes(router.pathname) && router.push("/");
     customer && customer?.customer && authenticatedVar(true);
     customer && !customer?.customer && authenticatedVar(false);
 
-    customer && !customer?.customer && router.push("/login");
+    customer && !customer?.customer && Cookies.remove('customerToken');
+
+    console.log(customer);
 
   }, [customer]);
+
+  useEffect(() => {
+
+    !token && router.push("/login");
+    customer && customer?.customer && authenticatedVar(true);
+
+  }, [token]);
+
+
+
+
+  //  useEffect(() => {
+
+  //   console.log('route changed');
+  //   console.log(customer);
+    
+  //   !customer && getMe();
+    
+
+  //   customer && customer?.customer && excludedRoutes?.includes(router.pathname) && router.push("/");
+  //   customer && customer?.customer && authenticatedVar(true);
+
+  //   customer && !customer?.customer && router.push("/login");
+
+  // }, [router.pathname]);
+
+
+  // useEffect(() => {
+
+  //   customer && customer?.customer && excludedRoutes?.includes(router.pathname) && router.push("/");
+  //   customer && customer?.customer && authenticatedVar(true);
+  //   customer && !customer?.customer && authenticatedVar(false);
+
+  //   customer && !customer?.customer && router.push("/login");
+
+  // }, [customer]);
 
   // customer && console.log(customer?.customer);
   // customer && console.log(customer);
@@ -67,6 +104,7 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
 
   // }, [customer]);
 
+  // console.log(error);
   // console.log(customer);
 
   return (

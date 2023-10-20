@@ -3,19 +3,18 @@ import Cookies from 'js-cookie';
 import style from './NavigationMenu.module.scss';
 import Link from 'next/link';
 import authenticatedVar from '../../constants/authenticated';
+import useLogout from '../../hooks/useLogout';
 
 const NavigationMenu = (props:any) => {
 
 	const {showMenu, setShowMenu} = props;
 
+	const {logout} = useLogout();
+
 	const authenticated = useReactiveVar(authenticatedVar);
 	// console.log(data);
 	// console.log(showBasket);
-	const handleLogout = () => {	
-		Cookies.remove('customerToken');
-		authenticatedVar(false);
-		console.log('logout');
-	}
+
 
 	return <div className={style.navigationMenu} style={{
 		transform: showMenu ? 'translateX(0px)' : 'translateX(-100%)'}}>
@@ -29,7 +28,7 @@ const NavigationMenu = (props:any) => {
 			{ authenticated && <Link href="/shop">Shop</Link> }
 			{ authenticated && <Link href="/basket">Basket</Link> }
 			
-			{ authenticated && <a href="#" onClick={() => handleLogout()}>Logout</a>}
+			{ authenticated && <a href="#" onClick={() => logout()}>Logout</a>}
 			{ !authenticated && <Link href="/login">Login</Link>}
 			{ !authenticated && <Link href="/signup">Signup</Link>}	
 		</nav> 

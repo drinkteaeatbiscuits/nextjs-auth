@@ -24,7 +24,7 @@ export const useLogin = () => {
 
         Cookies.set('customerToken', data.generateCustomerToken?.token, { secure: true });
         // document.cookie = `customerToken=${data.generateCustomerToken?.token}; path=/; secure=true http-only=true`;
-        authenticatedVar(true);
+        // authenticatedVar(true);
 
         client.refetchQueries({ include: "active" });
         
