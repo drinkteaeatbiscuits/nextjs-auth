@@ -29,7 +29,20 @@ const Header = () => {
 	const toggleBasket = () => {
 		
 		setShowBasket(!showBasket);
+		setShowSearchModal(false);
+		setShowMenu(false);
+	}
 
+	const toggleSearchModal = () => {
+		setShowSearchModal(!showSearchModal);
+		setShowBasket(false);
+		setShowMenu(false);
+	}
+
+	const toggleMenu = () => {
+		setShowMenu(!showMenu);
+		setShowBasket(false);
+		setShowSearchModal(false);
 	}
 
 	useEffect(() => {
@@ -60,7 +73,7 @@ const Header = () => {
 
 	
 				<div className={styles.headerLeft}>
-					<div className={styles.menuIconWrap} onClick={() => setShowMenu(!showMenu)}>
+					<div className={styles.menuIconWrap} onClick={() => toggleMenu()}>
 						<svg className={styles.menuIcon} xmlns="http://www.w3.org/2000/svg" width="35" height="21.001" viewBox="0 0 35 21.001">
   							<path d="M314,16V13h35v3Zm0-9V4h35V7Zm0-9V-5h35v3Z" transform="translate(-314 5)" fill="#d6d7dd"/>
 						</svg>
@@ -68,7 +81,7 @@ const Header = () => {
 				</div>
 				<div className={styles.headerCenter}>{ logo }</div>
 				<div className={styles.headerRight}>
-					<div className={styles.searchIconWrap}  onClick={() => setShowSearchModal(!showSearchModal)}>
+					<div className={styles.searchIconWrap}  onClick={() => toggleSearchModal()}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="28.742" height="28.742" viewBox="0 0 28.742 28.742">
 							<path d="M20.509,18.039l8.233,8.233-2.47,2.47-8.159-8.233V19.236l-.524-.449a10.422,10.422,0,0,1-6.961,2.545,10.245,10.245,0,0,1-7.522-3.106A10.245,10.245,0,0,1,0,10.7a10.369,10.369,0,0,1,3.106-7.56A10.1,10.1,0,0,1,10.554,0a10.184,10.184,0,0,1,7.522,3.144,10.369,10.369,0,0,1,3.106,7.56,10.422,10.422,0,0,1-2.545,6.961l.524.374Zm-15.119-2.1a7.27,7.27,0,0,0,5.239,2.1,7.2,7.2,0,0,0,5.239-2.133,7.017,7.017,0,0,0,2.171-5.2,7.139,7.139,0,0,0-2.171-5.239,7.139,7.139,0,0,0-5.239-2.171,7.017,7.017,0,0,0-5.2,2.171A7.2,7.2,0,0,0,3.293,10.7,7.27,7.27,0,0,0,5.389,15.943Zm23.353,12.8" fill="#d6d7dd"/>
 						</svg>
