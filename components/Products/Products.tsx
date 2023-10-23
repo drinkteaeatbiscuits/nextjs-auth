@@ -31,7 +31,7 @@ const Products = (props:any) => {
 		}
 	}
 
-	return <div className={ styles.products + ' products ' + layout }>
+	return <div className={ styles.products + ' products ' + styles[layout] + ' ' + layout }>
 
 			<div className={ styles.productsIcons }>
 				<div className={ styles.filtersSort }>
@@ -74,21 +74,6 @@ const Products = (props:any) => {
 
 			<ProductCatalog product={product} key={product?.uid} layout={layout} />
 
-				// <div className={styles.product} key={product.id}>
-				// 	<div className={styles.imagWrap}>
-				// 		<Link href={product.url_key}><LazyLoadImage
-				// 		className={styles.thumbnail}
-				// 		alt={product.thumbnail.label}
-				// 		src={product.thumbnail.url} 
-				// 			/></Link>
-				// 	</div>
-					
-
-				// 	<Link href={product.url_key}>{product.name}</Link>
-				// 	{/* <p>{ product?.sku }</p> */}
-				// 	{/* <p>{ product?.stock_status }</p> */}
-				// 	<ProductPrice product={product} />
-				// </div>
 			))
 		}
 		

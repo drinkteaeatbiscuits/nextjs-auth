@@ -19,11 +19,11 @@ const ProductCatalog = (props: any) => {
 			{ // If Product has variants
 			product?.variants && product?.variants?.length > 0 && <div className={styles.configurableProduct}>
 			
-				{ product?.variants?.slice(0, 1 ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant.product.uid} productAttributes={productVariant?.attributes} productType={'simple'} productLink={product.url_key} parentSku={product.sku} />)} 
+				{ product?.variants?.slice(0, 1 ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant.product.uid} productAttributes={productVariant?.attributes} productType={'simple'} productLink={product.url_key} parentSku={product.sku} parentProduct={product} />)} 
 
 				{ showAdditionalOptions && <div className={styles.additionalOptions}>
 
-					{ product?.variants?.slice(1, product?.variants.length ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant?.product?.uid} productAttributes={productVariant?.attributes} productType={'simple'}  productLink={product.url_key} parentSku={product.sku} />)} 
+					{ product?.variants?.slice(1, product?.variants.length ).map((productVariant: any, index: any) => <ProductDetails layout={layout} product={productVariant.product} key={productVariant?.product?.uid} productAttributes={productVariant?.attributes} productType={'simple'}  productLink={product.url_key} parentSku={product.sku}  parentProduct={product} />)} 
 				
 				</div> }
 
@@ -35,7 +35,7 @@ const ProductCatalog = (props: any) => {
 				
 
 	</div>
-	{product?.variants && product?.variants?.length > 0 && <div className={ styles.showOptions } onClick={() => setShowAdditionalOptions(!showAdditionalOptions)} ><p>{showAdditionalOptions ? 'Hide Options' : 'Show Options'}</p></div>}
+	{product?.variants && product?.variants?.length > 1 && layout === 'list' && <div className={ styles.showOptions } onClick={() => setShowAdditionalOptions(!showAdditionalOptions)} ><p>{showAdditionalOptions ? 'Hide Options' : 'Show Options'}</p></div>}
 	</>	
 }
 

@@ -3,7 +3,7 @@ import styles from './ProductQuantity.module.scss';
 
 const ProductQuantity = (props:any) => {
 
-	const {value, setQuantity} = props;
+	const {value, setQuantity, layout} = props;
 
 	const increaseQuantity = (e:any) => {
 		e.preventDefault();
@@ -27,7 +27,7 @@ const ProductQuantity = (props:any) => {
 
 	}
 
-	return <div className={styles.productQuantity }>
+	return <div className={styles.productQuantity + ' ' + (layout === 'grid' && styles.gridQuantity)}>
 		<div className={styles.minus + ' ' + isDisabled()} onClick={(e:any) => decreaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_359" data-name="Group 359" transform="translate(-243 -318)">

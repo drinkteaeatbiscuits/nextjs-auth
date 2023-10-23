@@ -142,6 +142,72 @@
 	
 }
 
+.single {
+	flex-direction: column;
+	height: 100%;
+	.productInner {
+		flex-wrap: nowrap;
+		padding: 0px 0;
+	}
+	.imagWrap {
+		width: 100%;
+		height: auto;
+		flex-shrink: 0;
+		
+	}
+	.productDetails {
+		padding: 8px 8px 4px 8px;
+	}
+	.addToCart {
+		padding: 6px 0 0;
+	}
+	// .simpleProduct {
+	// 	display: flex;
+	// 	width: 100%;
+	// }
+	// .configurableProduct {
+	// 	display: block;
+	// }
+
+	.outOfStock {
+		align-self: center;
+	}
+}
+
+.grid {
+	flex-direction: column;
+	height: 100%;
+	.productInner {
+		flex-wrap: nowrap;
+		padding: 0px 0;
+	}
+	.imagWrap {
+		width: 100%;
+		height: auto;
+		flex-shrink: 0;
+		
+	}
+	.productDetails {
+		padding: 8px 0px 4px 0px;
+	}
+	.price {
+		margin-bottom: 4px;
+	}
+	.addToCart {   
+		flex-wrap: wrap; 
+
+	}
+	.attributesSelect {
+		width: 100%;
+		padding: 0;
+		margin-top: 0;
+	}
+	.outOfStock {
+		padding: 16px 10px 10px;
+	}
+
+}
+
 .outOfStock {
 	line-height: 1;
     padding: 4px 10px 2px;
@@ -149,4 +215,68 @@
     align-self: flex-end;
     color: #797979;
 	font-size: 0.9em;
+}
+
+.attributesSelect {
+	flex-grow: 1;
+	margin: 4px 0;
+	padding: 0 12px 0 0;
+	position: relative;
+}
+
+.productAttributeSelected {
+	background-color: #fff;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 8px;
+	z-index: 4;
+    position: relative;
+	svg {
+		position: absolute;
+		right: 16px;
+		top: 50%;
+		margin: -3px;
+	}
+}
+
+.additionalVariants {
+	position: absolute;
+	background-color: #fff;
+	padding: 0px 8px 2px;
+	margin: 0;
+	display: block;
+	width: calc(100% - 12px);
+	z-index: 3;
+	border-radius:  0 0 5px 5px;
+	box-shadow: rgba(0, 8, 25, 0.05) 0px 3px 7px;
+}
+
+.variant {
+	cursor: pointer;
+	padding: 6px 6px;
+	margin: 0 -6px;
+	border-radius: 3px;
+	&:hover {
+		background-color: #edf5fa;
+	}
+}
+
+.attributesSelect.dropdownOpen {
+	.productAttributeSelected {
+		border-radius: 5px 5px 0 0;
+		svg {
+			transform: scaleY(-1);
+		}
+	}
+}
+
+.attributesSelect.singleVariant {
+	.productAttributeSelected {
+		background: transparent;
+		padding: 0;
+		cursor: default;
+		svg {
+			display: none;
+		}
+	}
 }
