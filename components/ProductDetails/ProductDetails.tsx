@@ -157,7 +157,9 @@ const ProductDetails = (props:any) => {
 
 
 						
-						{layout === 'single' || layout === 'grid' && parentSku && <div className={styles.price}><ProductPrice product={selectedVariant} /></div>}
+						{ (layout === 'single' || layout === 'grid') && parentSku && <div className={styles.price}><ProductPrice product={selectedVariant} /></div>}
+						
+						{/* { layout === 'grid'  && parentSku && <div className={styles.price}><ProductPrice product={selectedVariant} /></div>} */}
 
 						
 
@@ -170,7 +172,7 @@ const ProductDetails = (props:any) => {
 						{!parentSku && layout !== 'list' && <div className={styles.price}><ProductPrice product={selectedVariant} /></div>}
 					
 
-						{layout === 'single' || layout === 'grid' && parentSku && <div className={styles.attributesSelect + ' ' + (showAttributesDropdown && styles.dropdownOpen) + ' ' + (parentProduct?.variants.length <= 1 && styles.singleVariant)}>
+						{(layout === 'single' || layout === 'grid') && parentSku && <div className={styles.attributesSelect + ' ' + (showAttributesDropdown && styles.dropdownOpen) + ' ' + (parentProduct?.variants.length <= 1 && styles.singleVariant)}>
 
 
 							{ parentProduct?.variants && parentProduct?.variants?.find((product:any) => {

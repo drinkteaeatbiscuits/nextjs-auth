@@ -114,7 +114,7 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
       ) : (
         <>{!error && customer && children}</>
       )}
-      { !excludedRoutes?.includes(router.pathname) && error && <p>error</p> }
+      { !excludedRoutes?.includes(router.pathname) && error && <p>error.message</p> }
     </>
   );
 };
