@@ -32,17 +32,10 @@ const ProductDetails = (props:any) => {
 	function hideOnClickOutside(element:any) {
 
 		const outsideClickListener = (event:any) => {
-
-
-
 			if(element !== event.target){
 				setShowAttributesDropdown(false);
 				removeClickListener();
 			}
-			// if (!element.contains(event.target) && showAttributesDropdown) { 
-			// 	setShowAttributesDropdown(false);
-			//   removeClickListener();
-			// }
 		}
 	
 		const removeClickListener = () => {
@@ -198,7 +191,7 @@ const ProductDetails = (props:any) => {
 
 						</div> }
 
-						{selectedVariant.stock_status === 'IN_STOCK' && <><ProductQuantity value={quantity} setQuantity={setQuantity} layout={layout} />
+						{selectedVariant.stock_status === 'IN_STOCK' && <><ProductQuantity value={quantity} setQuantity={setQuantity} layout={layout} productId={selectedVariant.uid} />
 						{/* <input type="number" value={quantity || '1'} onChange={(e: any) => setQuantity(e.target.value)} /> */}
 						<button className={styles.addToBasket} onClick={(e) => parentSku ? handleAddConfigurableToCart(e, selectedVariant?.sku, quantity, parentSku, selectedVariant?.name) : handleAddToCart(e, selectedVariant?.sku, quantity, parentSku, selectedVariant?.name)}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="19.056" height="23.737" viewBox="0 0 19.056 23.737">

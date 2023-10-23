@@ -6,12 +6,16 @@
 	height: 43px;
 	border-radius: 22px;
 	padding: 5px 5px;
+	
 	.plus, .minus {
 		display: block;
 		cursor: pointer;
 		svg {
 			display: block;
 		}
+	}
+	&.singleProductPage {
+		border: 1px solid #D6D6D6;
 	}
 	.quantityInput {
 		all: unset;

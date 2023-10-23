@@ -6,6 +6,7 @@ import authenticatedVar from "../constants/authenticated";
 // import { authToken } from "../constants/authenticated";
 import useGetMe from "../hooks/useGetMe";
 import Cookies from "js-cookie";
+import Error from './Error/Error';
 
 interface GuardProps {
   children: JSX.Element;
@@ -114,7 +115,7 @@ const Guard = ({ children, excludedRoutes }: GuardProps) => {
       ) : (
         <>{!error && customer && children}</>
       )}
-      { !excludedRoutes?.includes(router.pathname) && error && <p>error.message</p> }
+      { !excludedRoutes?.includes(router.pathname) && error && <Error error={error} /> }
     </>
   );
 };

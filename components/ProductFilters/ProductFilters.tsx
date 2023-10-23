@@ -72,7 +72,7 @@ const ProductFilters = (props:any) => {
 					<div className={styles.filterOptions}>
 						{filter.options.map((option:any) => <div key={option.value} className={styles.filterOption} onClick={() => handleEditFilters(filter.attribute_code, option.value)}>
 							<div className={styles.checkbox + ' ' + (activeFilters[filter.attribute_code]?.in?.includes(option.value) && styles.checked)} ></div>
-							<label>{option.label} {option.count}</label>
+							<span className={styles.label}>{option.label} {option.count}</span>
 						</div>)}
 					</div>
 				</div>

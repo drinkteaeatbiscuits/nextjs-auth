@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import styles from "./Breadcrumbs.module.scss";
 
 const Breadcrumbs = (props: any) => {
-	const { breadcrumbs, category, url } = props;
+	const { breadcrumbs, category, url, isProductPage } = props;
 
 	const [loadedBreadcrumbs, setLoadedBreadcrumbs] = useState<any>(null);
 	const [loadedCategory, setLoadedCategory] = useState<any>(null);
@@ -20,17 +20,34 @@ const Breadcrumbs = (props: any) => {
 
 	return <div className={styles.breadcrumbs}>
 
-		{ loadedBreadcrumbs && loadedBreadcrumbs.map((breadcrumb: any) => {
-			
-			return <Fragment key={breadcrumb.category_uid || breadcrumb.id}><Link href={ breadcrumb.category_url_key || breadcrumb.url_key } >
+		{ loadedBreadcrumbs && loadedBreadcrumbs.map((breadcrumb: any, index:any) => {
+
+		
+			if(breadcrumb.currentCategory && !isProductPage){
+
+				return <div key={breadcrumb.category_uid} className={styles.currentCategory}>{ breadcrumb.category_name }</div>
+
+			}else if(breadcrumb.currentCategory && isProductPage){
+
+				return <Fragment key={breadcrumb.category_uid || breadcrumb.id}><Link href={ breadcrumb.category_url_key || breadcrumb.url_key } >
 				{ breadcrumb.category_name || breadcrumb.name }
-			</Link>
-			<div className={styles.divider}>/</div>
-			</Fragment>
+				</Link>
+				</Fragment>
+
+			}else{
+
+				return <Fragment key={breadcrumb.category_uid || breadcrumb.id}><Link href={ breadcrumb.category_url_key || breadcrumb.url_key } >
+				{ breadcrumb.category_name || breadcrumb.name }
+				</Link>
+				{ ( index + 1 ) !== loadedBreadcrumbs.length && <div className={styles.divider}>/</div> }
+				</Fragment>
+			}
+			
+			
 		})
 		}
 		
-		<div className={styles.currentCategory}>{ loadedCategory }</div>
+		{/* <div className={styles.currentCategory}>{ loadedCategory }</div> */}
 	</div>
 }
 

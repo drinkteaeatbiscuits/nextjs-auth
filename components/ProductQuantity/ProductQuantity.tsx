@@ -3,7 +3,7 @@ import styles from './ProductQuantity.module.scss';
 
 const ProductQuantity = (props:any) => {
 
-	const {value, setQuantity, layout} = props;
+	const {value, setQuantity, layout, productId, singleProduct} = props;
 
 	const increaseQuantity = (e:any) => {
 		e.preventDefault();
@@ -27,7 +27,7 @@ const ProductQuantity = (props:any) => {
 
 	}
 
-	return <div className={styles.productQuantity + ' ' + (layout === 'grid' && styles.gridQuantity)}>
+	return <div className={styles.productQuantity + ' ' + (layout === 'grid' && styles.gridQuantity) + ' ' + (singleProduct && styles.singleProductPage)}>
 		<div className={styles.minus + ' ' + isDisabled()} onClick={(e:any) => decreaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_359" data-name="Group 359" transform="translate(-243 -318)">
@@ -36,7 +36,7 @@ const ProductQuantity = (props:any) => {
 				</g>
 			</svg>
 		</div>
-		<input className={styles.quantityInput} type="number" value={value} onChange={(e: any) => setQuantity(e.target.value)} />
+		<input id={'quantity_' + productId } className={styles.quantityInput} type="number" value={value} onChange={(e: any) => setQuantity(e.target.value)} />
 		<div className={styles.plus}  onClick={(e:any) => increaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_360" data-name="Group 360" transform="translate(-318 -318)">

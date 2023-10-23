@@ -51,6 +51,9 @@ query Categories(
 	  		display_mode
 			image
 			uid
+			url_path
+			url_key
+			level
 			breadcrumbs {
 				category_url_path
 				category_url_key

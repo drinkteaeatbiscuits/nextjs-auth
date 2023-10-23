@@ -6,8 +6,13 @@ import Link from 'next/link';
 import client from '../../constants/apollo-client';
 import ProductCatalog from '../ProductCatalog/ProductCatalog';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 
 const SearchModal = (props:any) => {
+
+
+	const router = useRouter();
+	const { url } = router.query;
 
 	const {showSearchModal, setShowSearchModal} = props;
 	const [ pageNumber, setPageNumber ] = useState(1);
@@ -37,6 +42,12 @@ const SearchModal = (props:any) => {
 		getMoreProducts();
 	  }
 	  
+	  useEffect(() => {
+
+		setShowSearchModal(false);
+
+	  }, [url]);
+
 	useEffect(() => {
 
 		if(debounceSearch) {
@@ -109,8 +120,6 @@ const SearchModal = (props:any) => {
 				);
 
 			setPageNumber(nextPageNumber);
-
-		
 		
 	  };
 
@@ -123,7 +132,7 @@ const SearchModal = (props:any) => {
 			<div className={style.close} style={{cursor: 'pointer'}} onClick={() => { setShowSearchModal(false) }}>Close</div>
 		</div> */}
 		<div className={style.searchInputWrap}>
-			<input className={style.searchInput} placeholder={'Search'} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+			<input id='searchBox' className={style.searchInput} placeholder={'Search'} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 				
 		</div>
 		<div className={style.searchResults + ' ' + (loadedProducts && loadedProducts.items && style.productsLoaded)}>

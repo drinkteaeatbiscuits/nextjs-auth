@@ -17,7 +17,7 @@ import Notifications from '../components/Notifications/Notifications';
 
 const CategoryPage = (props: any) => {
 
-	const router = useRouter()
+	const router = useRouter();
 	const { url } = router.query;
 
 	const [ pageNumber, setPageNumber ] = useState(1);
@@ -34,6 +34,8 @@ const CategoryPage = (props: any) => {
 	const [totalProducts, setTotalProducts] = useState<any>(null);
 	const [showFiltersOverlay, setShowFiltersOverlay] = useState(false);
 
+	const [breadcrumbs, setBreadcrumbs] = useState<any>(null);
+
 	// console.log(products?.products?.aggregations);
 
 	const updateCategoryArray = () => {
@@ -48,9 +50,19 @@ const CategoryPage = (props: any) => {
 	}
 
 	useEffect(() => {
-		
-		
+			
 		url && getCategories();
+
+		// console.log(url);
+
+		url?.includes('shop') && setBreadcrumbs([{
+			category_level: 2,
+			category_name: 'Shop',
+			category_uid: 'Mw==',
+			category_url_key: 'shop',
+			category_url_path: 'shop',
+			currentCategory: true
+		}]);
 
 	}, [url]);
 
@@ -59,8 +71,29 @@ const CategoryPage = (props: any) => {
 		
 		categories && updateCategoryArray();
 
-	}, [categories]);
+		if(categories && categories?.categories?.items[0]?.breadcrumbs){
+			setBreadcrumbs([...categories?.categories?.items[0]?.breadcrumbs, 
+				{
+					category_level: categories?.categories.items[0]?.level,
+					category_name: categories?.categories.items[0]?.name,
+					category_uid: categories?.categories.items[0]?.uid,
+					category_url_key: categories?.categories.items[0]?.url_key,
+					category_url_path: categories?.categories.items[0]?.url_path,
+					currentCategory: true
+				}]);
+		}else if( categories && !breadcrumbs && product ){
 
+			// console.log('set breadcrumbs');
+			// console.log(product?.products?.items[0]?.categories?.slice(-1)[0]?.breadcrumbs);
+			product?.products?.items[0]?.categories?.slice(-1)[0]?.breadcrumbs && setBreadcrumbs(product?.products?.items[0]?.categories?.slice(-1)[0]?.breadcrumbs);
+
+		}
+
+
+
+	}, [categories, product]);
+
+	// console.log(categories);
 
 	useEffect(() => {
 
@@ -219,26 +252,28 @@ const CategoryPage = (props: any) => {
 		
 	  };
 
+
+	//  console.log(product?.products?.items?.length);
+
   
 	return <div className={styles.container}>
 		<Header />
 		<Notifications />
 		<main style={{paddingTop: '70px'}}>
 
-
 			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} filters={products?.products?.aggregations} activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
 
-			<Breadcrumbs url={url} breadcrumbs={categories?.categories.items[0]?.breadcrumbs || product?.products?.items[0]?.categories} category={categories?.categories.items[0]?.name || product?.products?.items[0]?.name} />
+			<Breadcrumbs url={url} breadcrumbs={ breadcrumbs } category={categories?.categories.items[0]?.name || product?.products?.items[0]?.name} isProductPage={product?.products?.items && product?.products?.items?.length > 0} />
 			
-			<h1>{categories?.categories.items[0]?.name}</h1>
+			{categories?.categories.items[0]?.name && <h1>{categories?.categories.items[0]?.name}</h1>}
 
 			{categories?.categories?.items[0]?.children && <ChildCategoriesCarousel categories={ categories?.categories?.items[0].children } />}
 
-				{ categories?.categories.items[0]?.display_mode !== 'PAGE' && <div className="">
+				{ categories?.categories.items[0]?.display_mode !== 'PAGE' && product?.products?.items?.length == 0 && <div className="">
 			
 				{ totalProducts && <p>{totalProducts} products found</p> }
 
-				<select className="sort" value={Object.keys(sortProducts)[0]} onChange={ (event) => changeSortOption(event.target.value, sortProducts[Object.keys(sortProducts)[0]]) }>
+				<select id='sort-products' className="sort" value={Object.keys(sortProducts)[0]} onChange={ (event) => changeSortOption(event.target.value, sortProducts[Object.keys(sortProducts)[0]]) }>
 					<option className="" value={'position'}>Position</option>
 					<option className="" value={'name'}>Name</option>
 					<option className="" value={'price'}>Price</option>

@@ -1,0 +1,40 @@
+.productImageGallery {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    overflow: scroll;
+}
+
+.productImage {
+    min-width: 25%;
+    max-width: 33%;
+    aspect-ratio: 5 / 4;
+}
+
+.mainImage {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+    object-fit: contain;
+    object-position: center center;
+	display: block;
+}
+
+.galleryImage {
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    &:hover {
+        opacity: 0.8;
+    }
+}

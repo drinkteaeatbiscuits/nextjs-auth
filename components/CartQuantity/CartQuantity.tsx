@@ -59,7 +59,7 @@ const CartQuantity = (props:any) => {
 				</g>
 			</svg>
 		</div>
-		<input className={styles.quantityInput} type="number" value={quantity || 1} readOnly />
+		<input id={'cartQuantity_' + CartItemUid} className={styles.quantityInput} type="number" value={quantity || 1} readOnly />
 		<div className={styles.plus}  onClick={(e:any) => increaseQuantity(e)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
 				<g id="Group_360" data-name="Group 360" transform="translate(-318 -318)">
