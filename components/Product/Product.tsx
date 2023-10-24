@@ -16,8 +16,9 @@ const Product = (props:any) => {
 
 	const [quantity, setQuantity] = useState(1);
 	const [variantQuantity, setVariantQuantity] = useState([]);
-	const [selectedVariant, setSelectedVariant] = useState<any>(product?.products?.items[0].variants[0].product);
+	const [selectedVariant, setSelectedVariant] = useState<any>(null);
 	const [showAttributesDropdown, setShowAttributesDropdown] = useState(false);
+
 
 	// const [theProduct, setTheProduct] = useState<any>(null);
 
@@ -29,11 +30,13 @@ const Product = (props:any) => {
 
 	const theProduct = product?.products?.items[0];
 
-	const price = new Intl.NumberFormat( undefined, {
-		style: 'currency',
-		currency: theProduct?.price_range.maximum_price.final_price.currency,
-	  });
+	
 
+	  useEffect(() => {
+
+		!selectedVariant && product?.products?.items[0]?.variants ? setSelectedVariant(product?.products?.items[0].variants[0].product) : setSelectedVariant(product?.products?.items[0]);
+
+	  }, [product]);
 	  
 
 	  useEffect(() => {
@@ -138,10 +141,10 @@ const Product = (props:any) => {
 
 
 
-	  console.log(theProduct);
-	  console.log(selectedVariant);
+	//   console.log(theProduct);
+	//   console.log(selectedVariant);
 
-	return <div className="product">
+	return selectedVariant && <div className="product">
 		 
 		 <div className={styles.product}>
 
@@ -160,7 +163,7 @@ const Product = (props:any) => {
 
 					{/* <div className={styles.price}><ProductPrice product={product} /></div> */}
 
-					{(theProduct.variants.length > 0) && <div className={styles.attributesSelect + ' ' + (showAttributesDropdown && styles.dropdownOpen) + ' ' + (theProduct?.variants.length <= 1 && styles.singleVariant)}>
+					{(theProduct?.variants?.length > 0) && <div className={styles.attributesSelect + ' ' + (showAttributesDropdown && styles.dropdownOpen) + ' ' + (theProduct?.variants.length <= 1 && styles.singleVariant)}>
 
 
 					{ theProduct?.variants && theProduct?.variants?.find((product:any) => {
@@ -197,9 +200,9 @@ const Product = (props:any) => {
 
 				<div className={styles.priceAddToCart}>
 
-					{selectedVariant.stock_status === 'IN_STOCK' && <><ProductQuantity value={quantity} setQuantity={setQuantity} layout={'single'} productId={selectedVariant.uid} singleProduct={true} />
+					{selectedVariant?.stock_status === 'IN_STOCK' && <><ProductQuantity value={quantity} setQuantity={setQuantity} layout={'single'} productId={selectedVariant.uid} singleProduct={true} />
 						{/* <input type="number" value={quantity || '1'} onChange={(e: any) => setQuantity(e.target.value)} /> */}
-						<button className={styles.addToBasket} onClick={(e) => theProduct ? handleAddConfigurableToCart(e, selectedVariant?.sku, quantity, theProduct.sku, selectedVariant?.name) : handleAddToCart(e, selectedVariant?.sku, quantity, theProduct.sku, selectedVariant?.name)}>
+						<button className={styles.addToBasket} onClick={(e) => theProduct?.variants ? handleAddConfigurableToCart(e, selectedVariant?.sku, quantity, theProduct.sku, selectedVariant?.name) : handleAddToCart(e, selectedVariant?.sku, quantity, theProduct.sku, selectedVariant?.name)}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="19.056" height="23.737" viewBox="0 0 19.056 23.737">
 								<path id="Union_6" data-name="Union 6" d="M2.4,23.737A2.4,2.4,0,0,1,0,21.4V7.133a2.414,2.414,0,0,1,2.4-2.4h2.4a4.736,4.736,0,1,1,9.473,0h2.4a2.414,2.414,0,0,1,2.4,2.4V21.4a2.4,2.4,0,0,1-2.4,2.34Zm0-2.34H16.66V7.133h-2.4v2.34a1.171,1.171,0,1,1-2.34,0V7.133H7.132v2.34a1.171,1.171,0,1,1-2.34,0V7.133H2.4ZM7.132,4.737h4.793a2.452,2.452,0,0,0-2.4-2.4A2.452,2.452,0,0,0,7.132,4.737ZM8.837,19.652v-4.21H4.626V14.06H8.837V9.85h1.381v4.21H14.43v1.382H10.219v4.21Z" fill="#fff"/>
 							</svg>

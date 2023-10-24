@@ -81,6 +81,21 @@ const Cart = (props:any) => {
 	// console.log(cartData);
 	// console.log(showBasket);
 
+	const getThumbnail = (productImage:any, parentProductImage:any) => {
+
+		let thumbnail = {label: 'placeholder', url: 'https://top-gift.co.uk/media/catalog/product/placeholder/default/tg-logo_2x.png'}
+		thumbnail = productImage;
+
+		if(productImage?.url === 'https://top-gift.co.uk/media/catalog/product/placeholder/default/tg-logo_2x.png' && parentProductImage){
+			// console.log('load parent thumbnail');
+			thumbnail = parentProductImage;
+		}
+
+		return thumbnail;
+	}
+
+
+
 	return <div className={styles.Cart + ' ' + isCartOpenStyle()} style={{
 		transform: showBasket ? 'translateX(0px)' : 'translateX(100%)',
 		}}>
@@ -99,11 +114,17 @@ const Cart = (props:any) => {
 		<div className={styles.cartItems}>
 			{!cartLoading && cartData?.customerCart?.items.length > 0 && cartData?.customerCart?.items?.map((item: any) => {
 
+				console.log(item?.configured_variant?.image);
+				console.log(item.product?.image);
+
 				return <div className={styles.cartItem + ' ' + isProductRemoving(item?.uid)} key={item.uid}>
 					<div className={styles.imageColumn}>
 						<div className={styles.cartItemImageWrap}>
-						{item?.configured_variant?.image?.url ? <Image width={100} height={100} src={item?.configured_variant?.image?.url} /> : ( item?.product?.image?.url && <Image width={100} height={100} src={item?.product?.image?.url} /> ) }
-					</div>
+						{/* {item?.configured_variant?.image?.url ? <Image width={100} height={100} src={item?.configured_variant?.image?.url} /> : ( item?.product?.image?.url && <Image width={100} height={100} src={item?.product?.image?.url} /> ) } */}
+					
+						{ item?.configured_variant?.image?.url ? <Image width={100} height={100} src={getThumbnail(item?.configured_variant?.image, item.product?.image).url} /> : <Image width={100} height={100} src={item?.product?.image?.url} />}
+					
+						</div>
 						
 					</div>
 					<div className={styles.detailsColumn}>
