@@ -97,10 +97,10 @@ const Cart = (props:any) => {
 
 
 	return <div className={styles.Cart + ' ' + isCartOpenStyle()} style={{
-		transform: showBasket ? 'translateX(0px)' : 'translateX(100%)',
+		transform: showBasket ? 'translateY(0px)' : 'translateY(100%)',
 		}}>
 
-		<div className={ styles.closeCartOverlay} onClick={() => setShowBasket(false)}></div>
+		{/* <div className={ styles.closeCartOverlay} onClick={() => setShowBasket(false)}></div> */}
 		<div className={ styles.cartInner }>
 			
 		<div className={styles.cartTop}>
@@ -114,8 +114,8 @@ const Cart = (props:any) => {
 		<div className={styles.cartItems}>
 			{!cartLoading && cartData?.customerCart?.items.length > 0 && cartData?.customerCart?.items?.map((item: any) => {
 
-				console.log(item?.configured_variant?.image);
-				console.log(item.product?.image);
+				/* console.log(item?.configured_variant?.image);
+				console.log(item.product?.image); */
 
 				return <div className={styles.cartItem + ' ' + isProductRemoving(item?.uid)} key={item.uid}>
 					<div className={styles.imageColumn}>

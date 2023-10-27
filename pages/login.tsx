@@ -7,8 +7,11 @@ import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
 import Header from "../components/Header/Header";
 import Notifications from "../components/Notifications/Notifications";
+import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 
 const Login = () => {
+
+  
 
   const authenticated = useReactiveVar(authenticatedVar);
 
@@ -29,9 +32,10 @@ const Login = () => {
     
   };
 
-  return (
+  return <>
+  
     <div className={styles.loginContainer}>
-		  <Header />
+		  {/* <Header /> */}
       <Notifications />
       <main style={{paddingTop: '70px'}}>
         <h1 className={styles.title}>Login</h1>
@@ -48,7 +52,8 @@ const Login = () => {
 
     </div>
    
-  );
+    
+  </>
 };
 
 export default Login;

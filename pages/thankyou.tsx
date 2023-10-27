@@ -6,6 +6,7 @@ import useGetOrder from "../hooks/useGetOrder";
 import { FormattedNumber, IntlProvider } from "react-intl";
 import { useEffect } from "react";
 import Notifications from "../components/Notifications/Notifications";
+import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 
 
 const Thankyou: NextPage = (props:any) => {
@@ -31,8 +32,9 @@ const Thankyou: NextPage = (props:any) => {
 	
 	//   !loading && console.log(order?.customer?.orders?.items[0]);
 
-	return <div className={homeStyles.container}>
-		<Header />
+	return <><BottomNavigationBar />
+	<div className={homeStyles.container}>
+		
 		<Notifications />
 
 		<main style={{padding: '70px 0 0'}}>
@@ -49,7 +51,7 @@ const Thankyou: NextPage = (props:any) => {
 			</div>}
         
       </main>
-	</div>
+	</div></>
 }
 
 export default Thankyou;

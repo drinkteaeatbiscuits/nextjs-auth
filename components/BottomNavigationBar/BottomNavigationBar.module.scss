@@ -1,0 +1,89 @@
+.navBarWrap {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    max-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
+    // min-height: -webkit-fill-available;
+    // height: -webkit-fill-available;
+    align-items: flex-end;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+.modalArea {
+  flex-grow: 1;
+  flex-shrink: 1;  
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bottomNavigationBar { 
+    width: 100%;
+    background-color: #fff;
+    display: flex; 
+	align-items: center; 
+	border-top: #EBEBEB solid 1px;
+    justify-content: space-around;
+    gap: 12px;
+    padding: 12px 12px calc(env(safe-area-inset-bottom) + 12px );
+    z-index: 9;
+    pointer-events: all;
+    
+}
+.navigationItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    &.home {
+        padding: 0 4px;
+    }
+    &.products {
+        padding: 0 4px;
+    }
+    .icon path {
+        transition: 0.2s;
+    }
+    &:hover {
+        .icon path {
+            fill: #b5b5ba;
+        }
+    }
+    .icon {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+    }
+    span {
+        font-size: 0.8rem;
+        padding: 3px;
+        color: #3D3D41;
+    }
+}
+.basketQuantity {
+	position: absolute; 
+	bottom: 60%; 
+	left: 60%; 
+	background: #A3BA00; 
+	color: #fff;
+	font-size: 12px; 
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	line-height: 19px;
+	opacity: 1;
+	transition: 0.2s opacity ease-out;
+	animation: fadeIn 0.25s;
+}

@@ -10,6 +10,8 @@ import Notifications from "../components/Notifications/Notifications";
 import ChildCategoriesCarousel from "../components/ChildCategoriesCarousel/ChildCategoriesCarousel";
 import useGetCategories from "../hooks/useGetCategories";
 import { useEffect } from "react";
+import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
+import SearchModal from "../components/SearchModal/SearchModal";
 
 const Home: NextPage = () => {
 
@@ -28,17 +30,19 @@ const Home: NextPage = () => {
 
   // console.log(categories);
   
-  return (
+  return <>
+    <BottomNavigationBar />
     <div className={styles.container}>
       {/* <Head>
         <title>Top Gift Store</title>
         <meta name="description" content="Top Gift Store" />
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
+      <SearchModal showSearchModal={true} />
 
       
-
-      <Header />
+      
+      {/* <Header /> */}
       <Notifications />
 
       <main style={{padding: '70px 0 0'}}>
@@ -55,7 +59,8 @@ const Home: NextPage = () => {
       </main>
 
     </div>
-  );
+    
+  </>;
 };
 
 export default Home;

@@ -4,9 +4,9 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../constants/apollo-client";
 import Guard from "../components/Guard";
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   
-
   
   return (
       <ApolloProvider client={client}>

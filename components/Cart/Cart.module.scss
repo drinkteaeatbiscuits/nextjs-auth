@@ -1,14 +1,19 @@
 .Cart {
-	position: fixed;
+	position: relative;
 	top: 0;
 	right: 0;
-	height: 100%;
+	height: 0;
 	
-	z-index: 99;
+	// z-index: 99;
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
 	transition: 0.2s transform cubic-bezier(0.46, 0.03, 0.52, 0.96);	
+	overflow: hidden;
+	pointer-events: all;
+	&.showBasket {
+		height: 100%;
+	}
 }
 
 .closeCartOverlay {
@@ -17,6 +22,7 @@
 	opacity: 0;
 	transition: 0s opacity 0s ease-out;
 	cursor: pointer;
+
 }
 
 .Cart.showBasket {
@@ -26,11 +32,11 @@
 	}
 }
 .cartInner {
-	width: 90%;
-	max-width: 400px;
-	padding-top: 70px;
+	width: 100%;
+	// max-width: 400px;
+	padding-top: 12px;
 	filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.1));
-	padding: 70px 0px 0;
+	padding: 12px 0px 0;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;

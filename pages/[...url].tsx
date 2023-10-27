@@ -13,6 +13,8 @@ import styles from "../styles/Home.module.scss";
 import ProductFilters from '../components/ProductFilters/ProductFilters';
 import ChildCategoriesCarousel from '../components/ChildCategoriesCarousel/ChildCategoriesCarousel';
 import Notifications from '../components/Notifications/Notifications';
+import BottomNavigationBar from '../components/BottomNavigationBar/BottomNavigationBar';
+import SearchModal from '../components/SearchModal/SearchModal';
 
 
 const CategoryPage = (props: any) => {
@@ -256,8 +258,9 @@ const CategoryPage = (props: any) => {
 	//  console.log(product?.products?.items?.length);
 
   
-	return <div className={styles.container}>
-		<Header />
+	return <><BottomNavigationBar />
+	<div className={styles.container}>
+		<SearchModal showSearchModal={true} />
 		<Notifications />
 		<main style={{paddingTop: '70px'}}>
 
@@ -301,7 +304,7 @@ const CategoryPage = (props: any) => {
 			
 		</main>
 	
-	</div>
+	</div></>
   }
   
   export default CategoryPage
