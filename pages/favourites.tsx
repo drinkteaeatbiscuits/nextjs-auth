@@ -5,6 +5,7 @@ import authenticatedVar from "../constants/authenticated";
 import styles from "../styles/Home.module.scss";
 import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
+import Head from "../components/Head/Head";
 
 const Favourites: NextPage = () => {
 
@@ -12,6 +13,7 @@ const Favourites: NextPage = () => {
 	const authenticated = useReactiveVar(authenticatedVar);
   
   return <>
+    <Head title={ 'Components | Top Gift'}/>
     <BottomNavigationBar />
     <div className={styles.container}>
       <Notifications />

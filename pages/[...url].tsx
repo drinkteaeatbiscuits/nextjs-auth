@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
 import Categories from '../components/Categories';
-import Header from '../components/Header/Header'
+import Header from '../components/Header/Header';
+import Head from '../components/Head/Head';
 import Product from '../components/Product/Product';
 import Products from '../components/Products/Products';
 import useGetCategories from '../hooks/useGetCategories';
@@ -15,6 +16,7 @@ import ChildCategoriesCarousel from '../components/ChildCategoriesCarousel/Child
 import Notifications from '../components/Notifications/Notifications';
 import BottomNavigationBar from '../components/BottomNavigationBar/BottomNavigationBar';
 import SearchModal from '../components/SearchModal/SearchModal';
+
 
 
 const CategoryPage = (props: any) => {
@@ -257,8 +259,21 @@ const CategoryPage = (props: any) => {
 
 	//  console.log(product?.products?.items?.length);
 
+	const pageTitle = () => {
+		if(categories?.categories.items[0]?.name){
+			return categories?.categories.items[0]?.name;
+		}
+
+		if(product?.products?.items[0]?.name){
+			return product?.products?.items[0]?.name;
+		}
+
+		return ''
+
+	}
   
 	return <><BottomNavigationBar />
+	<Head title={ pageTitle() + ' | Top Gift'}/>
 	<div className={styles.container}>
 		<SearchModal showSearchModal={true} />
 		<Notifications />

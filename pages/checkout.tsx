@@ -15,6 +15,7 @@ import { useSetShippingAddress } from "../hooks/useSetShippingAddress";
 import { useSetShippingMethodsOnCart } from "../hooks/useSetShippingMethodsOnCart";
 import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
+import Head from "../components/Head/Head";
 
 const Checkout: NextPage = () => {
 
@@ -192,7 +193,9 @@ const Checkout: NextPage = () => {
 		!cartData && getBasket();
 	}, [yourCartId]);
 
-	return <><BottomNavigationBar />
+	return <>
+	<Head title={ 'Checkout | Top Gift'}/>
+	<BottomNavigationBar />
 	<div className={homeStyles.container}>
 
 		<Notifications />

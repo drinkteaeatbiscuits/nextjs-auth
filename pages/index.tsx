@@ -1,6 +1,6 @@
 import { useReactiveVar } from "@apollo/client";
 import type { NextPage } from "next";
-import Head from "next/head";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../components/Header/Header";
@@ -12,6 +12,7 @@ import useGetCategories from "../hooks/useGetCategories";
 import { useEffect } from "react";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import SearchModal from "../components/SearchModal/SearchModal";
+import Head from "../components/Head/Head";
 
 const Home: NextPage = () => {
 
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
   // console.log(categories);
   
   return <>
+    <Head title={ 'Top Gift'}/>
     <BottomNavigationBar />
     <div className={styles.container}>
       {/* <Head>

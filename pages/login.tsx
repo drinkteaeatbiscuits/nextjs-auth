@@ -8,6 +8,7 @@ import { useReactiveVar } from "@apollo/client";
 import Header from "../components/Header/Header";
 import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
+import Head from "../components/Head/Head";
 
 const Login = () => {
 
@@ -33,7 +34,7 @@ const Login = () => {
   };
 
   return <>
-  
+    <Head title={ 'Login | Top Gift'}/>
     <div className={styles.loginContainer}>
 		  {/* <Header /> */}
       <Notifications />

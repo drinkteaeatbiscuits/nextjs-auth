@@ -7,6 +7,7 @@ import { FormattedNumber, IntlProvider } from "react-intl";
 import { useEffect } from "react";
 import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
+import Head from "../components/Head/Head";
 
 
 const Thankyou: NextPage = (props:any) => {
@@ -32,7 +33,9 @@ const Thankyou: NextPage = (props:any) => {
 	
 	//   !loading && console.log(order?.customer?.orders?.items[0]);
 
-	return <><BottomNavigationBar />
+	return <>
+	<Head title={ 'Thankyou | Top Gift'}/>
+	<BottomNavigationBar />
 	<div className={homeStyles.container}>
 		
 		<Notifications />
