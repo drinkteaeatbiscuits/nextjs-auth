@@ -5,6 +5,11 @@ const nextConfig = {
   images: {
     domains: ['top-gift.co.uk'],
   },
+  experimental: {
+    images: {
+      unoptimized: true
+    }
+  },
   async rewrites() {
     return [
       {

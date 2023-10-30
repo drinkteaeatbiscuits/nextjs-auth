@@ -29,7 +29,7 @@ const CategoriesNavigation = (props:any) => {
 
     }, [showCategoriesNavigation]);
 
-    console.log(categories);
+    // console.log(categories);
     
     return <div className={styles.CategoriesNavigation + ' ' + (showCategoriesNavigation && styles.showCategoriesNavigation)} style={{
 		transform: showCategoriesNavigation ? 'translateY(0px)' : 'translateY(100%)',
