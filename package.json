@@ -30,6 +30,7 @@
     "sass": "^1.58.3"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.1",
     "@capacitor/cli": "^5.5.1",
     "@types/cookies": "^0.7.7",
     "@types/js-cookie": "^3.0.2",

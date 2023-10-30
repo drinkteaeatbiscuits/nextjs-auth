@@ -8,11 +8,13 @@ import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigat
 import Head from "../components/Head/Head";
 
 import globalStyles from '../styles/globalStyles.module.scss';
+import useLogout from "../hooks/useLogout";
 
 const Account: NextPage = () => {
 
   const router = useRouter();
 	const authenticated = useReactiveVar(authenticatedVar);
+  const {logout} = useLogout();
   
   return <>
     <Head title={ 'Account | Top Gift'}/>
@@ -22,6 +24,9 @@ const Account: NextPage = () => {
 
       <main className={globalStyles.main}>
         <h1>My Account</h1>
+
+        <p onClick={() => logout()}>Logout</p>
+     
      
 
       </main>
