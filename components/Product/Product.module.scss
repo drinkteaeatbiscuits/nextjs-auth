@@ -1,6 +1,6 @@
 .product {
 	display: block;
-	padding-bottom: 50px;
+	padding-bottom: calc(50px + env(safe-area-inset-bottom));
 }
 .image {
 	max-width: 100%;
