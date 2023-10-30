@@ -7,6 +7,8 @@ import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import Head from "../components/Head/Head";
 
+import globalStyles from '../styles/globalStyles.module.scss';
+
 const Account: NextPage = () => {
 
   const router = useRouter();
@@ -18,7 +20,7 @@ const Account: NextPage = () => {
     <div className={styles.container}>
       <Notifications />
 
-      <main style={{padding: '70px 0 0'}}>
+      <main className={globalStyles.main}>
         <h1>My Account</h1>
      
 

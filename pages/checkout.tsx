@@ -17,6 +17,8 @@ import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import Head from "../components/Head/Head";
 
+import globalStyles from '../styles/globalStyles.module.scss';
+
 const Checkout: NextPage = () => {
 
 	// const {data, error, refetch, loading} = useGetBasket();
@@ -200,7 +202,7 @@ const Checkout: NextPage = () => {
 
 		<Notifications />
 
-		<main style={{padding: '70px 0 0'}}>
+		<main className={globalStyles.main}>
         <h1>Checkout</h1>
 
 		{ cartData?.customerCart?.items?.length === 0 ? <div className=""><p>Please add items to your cart.</p></div> : <><div className={ styles.checkoutSection + ' ' + ( checkoutSection === 'shipping' && styles.active )}>

@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import SearchModal from "../components/SearchModal/SearchModal";
 import Head from "../components/Head/Head";
+import globalStyles from '../styles/globalStyles.module.scss';
 
 const Home: NextPage = () => {
 
@@ -47,7 +48,7 @@ const Home: NextPage = () => {
       {/* <Header /> */}
       <Notifications />
 
-      <main style={{padding: '70px 0 0'}}>
+      <main className={globalStyles.main}>
         <h1>Home</h1>
         { authenticated && <Link href="/shop">See All Products</Link> }
 

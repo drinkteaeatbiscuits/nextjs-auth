@@ -7,6 +7,8 @@ import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import Head from "../components/Head/Head";
 
+import globalStyles from '../styles/globalStyles.module.scss';
+
 const Favourites: NextPage = () => {
 
   const router = useRouter();
@@ -18,7 +20,7 @@ const Favourites: NextPage = () => {
     <div className={styles.container}>
       <Notifications />
 
-      <main style={{padding: '70px 0 0'}}>
+      <main className={globalStyles.main}>
         <h1>Favourites</h1>
      
 

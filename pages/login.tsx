@@ -10,6 +10,8 @@ import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import Head from "../components/Head/Head";
 
+import globalStyles from '../styles/globalStyles.module.scss';
+
 const Login = () => {
 
   
@@ -38,7 +40,7 @@ const Login = () => {
     <div className={styles.loginContainer}>
 		  {/* <Header /> */}
       <Notifications />
-      <main style={{paddingTop: '70px'}}>
+      <main className={globalStyles.main}>
         <h1 className={styles.title}>Login</h1>
 
         <form onSubmit={handleSubmit}  className={styles.container}>

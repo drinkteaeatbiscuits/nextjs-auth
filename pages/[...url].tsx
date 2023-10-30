@@ -17,6 +17,8 @@ import Notifications from '../components/Notifications/Notifications';
 import BottomNavigationBar from '../components/BottomNavigationBar/BottomNavigationBar';
 import SearchModal from '../components/SearchModal/SearchModal';
 
+import globalStyles from '../styles/globalStyles.module.scss';
+
 
 
 const CategoryPage = (props: any) => {
@@ -277,7 +279,7 @@ const CategoryPage = (props: any) => {
 	<div className={styles.container}>
 		<SearchModal showSearchModal={true} />
 		<Notifications />
-		<main style={{paddingTop: '70px'}}>
+		<main className={globalStyles.main}>
 
 			<ProductFilters categories={categories} showFilters={showFiltersOverlay} setShowFiltersOverlay={setShowFiltersOverlay} filters={products?.products?.aggregations} activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
 

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Notifications from "../components/Notifications/Notifications";
 import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigationBar";
 import Head from "../components/Head/Head";
+import globalStyles from '../styles/globalStyles.module.scss';
 
 
 const Thankyou: NextPage = (props:any) => {
@@ -40,7 +41,7 @@ const Thankyou: NextPage = (props:any) => {
 		
 		<Notifications />
 
-		<main style={{padding: '70px 0 0'}}>
+		<main className={globalStyles.main}>
         <h1>Thankyou</h1>
 		<p>Order Number: {router?.query?.order_number}</p>
 
