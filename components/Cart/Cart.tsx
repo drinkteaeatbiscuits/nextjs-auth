@@ -122,7 +122,7 @@ const Cart = (props:any) => {
 						<div className={styles.cartItemImageWrap}>
 						{/* {item?.configured_variant?.image?.url ? <Image width={100} height={100} src={item?.configured_variant?.image?.url} /> : ( item?.product?.image?.url && <Image width={100} height={100} src={item?.product?.image?.url} /> ) } */}
 					
-						{ item?.configured_variant?.image?.url ? <Image width={100} height={100} src={getThumbnail(item?.configured_variant?.image, item.product?.image).url} /> : <Image width={100} height={100} src={item?.product?.image?.url} />}
+						{ item?.configured_variant?.image?.url ? <Image width={100} height={100} src={getThumbnail(item?.configured_variant?.image, item.product?.image).url} alt={""} /> : <Image width={100} height={100} src={item?.product?.image?.url} alt={""} />}
 					
 						</div>
 						

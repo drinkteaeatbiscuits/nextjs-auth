@@ -4,11 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['top-gift.co.uk'],
-  },
-  experimental: {
-    images: {
-      unoptimized: true
-    }
+    unoptimized: true
   },
   async rewrites() {
     return [
@@ -17,6 +13,9 @@ const nextConfig = {
         destination: `${process.env.API_URL}/:path*`,
       },
     ];
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 

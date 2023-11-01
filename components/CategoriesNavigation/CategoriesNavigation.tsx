@@ -39,7 +39,7 @@ const CategoriesNavigation = (props:any) => {
             <div className={styles.categories}>
                 <div className={styles.categorySectionTitle}><p>Shop by Category</p></div>
                     {categories?.categories?.items[0]?.children?.length > 0 && categories?.categories?.items[0]?.children.map((category:any) => {
-                        return <Link key={category.uid} href={category.url_key}><div className={styles.category} >
+                        return <Link className={styles.categoryLink} key={category.uid} href={category.url_key}><div className={styles.category} >
                             { category.image && <LazyLoadImage
                                     className={styles.categoryImage}
                                     alt={ category.name }
