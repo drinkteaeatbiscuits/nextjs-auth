@@ -8,6 +8,7 @@ import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigat
 import Head from "../components/Head/Head";
 
 import globalStyles from '../styles/globalStyles.module.scss';
+import FavouriteProducts from "../components/FavouriteProducts/FavouriteProducts";
 
 const Favourites: NextPage = () => {
 
@@ -23,7 +24,7 @@ const Favourites: NextPage = () => {
       <main className={globalStyles.main}>
         <h1>Favourites</h1>
      
-        <Favourites />
+        <FavouriteProducts />
       </main>
 
     </div>
