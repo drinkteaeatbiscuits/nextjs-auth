@@ -23,7 +23,7 @@ const Favourites: NextPage = () => {
       <main className={globalStyles.main}>
         <h1>Favourites</h1>
      
-
+        <Favourites />
       </main>
 
     </div>
