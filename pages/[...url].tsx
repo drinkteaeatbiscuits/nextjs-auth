@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
 import Categories from '../components/Categories';
 import Header from '../components/Header/Header';
@@ -18,6 +18,7 @@ import BottomNavigationBar from '../components/BottomNavigationBar/BottomNavigat
 import SearchModal from '../components/SearchModal/SearchModal';
 
 import globalStyles from '../styles/globalStyles.module.scss';
+import useGetMe from '../hooks/useGetMe';
 
 
 
@@ -26,9 +27,12 @@ const CategoryPage = (props: any) => {
 	const router = useRouter();
 	const { url } = router.query;
 
+	const CustomerContext = createContext(null);
+	
 	const [ pageNumber, setPageNumber ] = useState(1);
 
 	const [getCategories, { data: categories }] = useGetCategories( url );
+	const [getCustomer, { data: customer }] = useGetMe();
 	// const { data: products, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null } );
 	const { data: product, refetch: refetchProduct } = useGetProduct( { url_key: url } );
 	const { data: products, fetchMore: fetchMoreProducts, refetch: refetchProducts } = useGetProducts( { pageNumber: pageNumber, pageSize: 9, category_id: null, sort: { position: 'DESC' } } );
@@ -43,6 +47,10 @@ const CategoryPage = (props: any) => {
 	const [breadcrumbs, setBreadcrumbs] = useState<any>(null);
 
 	// console.log(products?.products?.aggregations);
+
+	useEffect(() => {
+		!customer && getCustomer();
+	}, []);
 
 	const updateCategoryArray = () => {
 		const categoryArray: any[] = []
@@ -312,12 +320,12 @@ const CategoryPage = (props: any) => {
 
 			{ categories?.categories.items[0]?.display_mode === 'PAGE' && <Categories categories={ categories } /> }
 			
-			{ categories?.categories.items[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
+			{ categories?.categories.items[0]?.display_mode === null && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } customer={customer} /> }
 			
-			{ categories?.categories.items[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } /> }
+			{ categories?.categories.items[0]?.display_mode === 'PRODUCTS' && <Products products={ loadedProducts } pageNumber={pageNumber} setPageNumber={ getMoreProducts } showFiltersOverlay={ showFiltersOverlay } setShowFiltersOverlay={ setShowFiltersOverlay } customer={customer} /> }
 	  		
 
-			{ product?.products?.items && product?.products?.items?.length > 0 && <Product product={ product } /> }
+			{ product?.products?.items && product?.products?.items?.length > 0 && <Product product={ product } customer={customer} /> }
 			
 		</main>
 	

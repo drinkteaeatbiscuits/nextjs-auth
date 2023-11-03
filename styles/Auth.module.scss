@@ -71,3 +71,12 @@
   max-width: 360px;
 	margin: 16px 5px;
 }
+
+.noAccount {
+	text-align: center;
+  color: #b9b8b8;
+  transition: 0.2s ease-out;
+  &:hover {
+    color: #928f8f;
+  }
+}

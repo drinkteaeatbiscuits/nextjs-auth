@@ -50,8 +50,9 @@ const Login = () => {
           <input className={styles.loginInput} type="password" name="password" id="password" required />
           <button className={styles.loginButton} type="submit">Login</button>
         </form>
+        <a href="https://top-gift.co.uk/customer/account/create/" target="_blank"><p className={styles.noAccount}>Don't have an account? Visit www.top-gift.co.uk to register as a wholesale customer</p>
+      </a>
       </main>
-      
 
     </div>
    

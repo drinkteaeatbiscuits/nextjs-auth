@@ -1,3 +1,15 @@
 .main {
 	padding: calc(70px + env(safe-area-inset-top)) 0 0;
 }
+
+.favourites {
+	padding: calc(16px + env(safe-area-inset-top)) 0 0;
+}
+
+.pageTitle {
+	font-weight: 400;
+	margin: 0 0 16px;
+	padding: 0;
+	font-size: 1.4rem;
+}
+

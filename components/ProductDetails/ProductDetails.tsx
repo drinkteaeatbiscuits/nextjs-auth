@@ -119,7 +119,7 @@ const ProductDetails = (props:any) => {
 		let thumbnail = {label: 'placeholder', url: 'https://top-gift.co.uk/media/catalog/product/placeholder/default/tg-logo_2x_2.png'}
 		thumbnail = selectedVariant?.thumbnail;
 
-		if(selectedVariant?.thumbnail.url === 'https://top-gift.co.uk/media/catalog/product/placeholder/default/tg-logo_2x_2.png' && parentProduct?.thumbnail){
+		if(selectedVariant?.thumbnail?.url === 'https://top-gift.co.uk/media/catalog/product/placeholder/default/tg-logo_2x_2.png' && parentProduct?.thumbnail){
 			// console.log('load parent thumbnail');
 			thumbnail = parentProduct?.thumbnail;
 		}
@@ -133,8 +133,8 @@ const ProductDetails = (props:any) => {
 				<div className={styles.imagWrap}>
 					<LazyLoadImage
 						className={styles.thumbnail}
-						alt={ getThumbnail().label }
-						src={ getThumbnail().url }
+						alt={ getThumbnail()?.label }
+						src={ getThumbnail()?.url }
 					/>
 				</div>
 

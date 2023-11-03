@@ -7,7 +7,7 @@ import ProductPrice from "../ProductPrice/ProductPrice";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 const Products = (props:any) => {
-	const { products, pageNumber, setPageNumber, setShowFiltersOverlay, showFiltersOverlay } = props;
+	const { products, pageNumber, setPageNumber, setShowFiltersOverlay, showFiltersOverlay, customer } = props;
 
 	const [layout, setLayout] = useState('list');
 
@@ -72,7 +72,7 @@ const Products = (props:any) => {
 
 		 { products?.items && products?.items.map((product: any) => (
 
-			<ProductCatalog product={product} key={product?.uid} layout={layout} />
+			<ProductCatalog product={product} key={product?.uid} layout={layout} customer={customer} />
 
 			))
 		}

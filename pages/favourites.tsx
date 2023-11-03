@@ -10,10 +10,12 @@ import Head from "../components/Head/Head";
 import globalStyles from '../styles/globalStyles.module.scss';
 import FavouriteProducts from "../components/FavouriteProducts/FavouriteProducts";
 
+
 const Favourites: NextPage = () => {
 
   const router = useRouter();
 	const authenticated = useReactiveVar(authenticatedVar);
+  
   
   return <>
     <Head title={ 'Components | Top Gift'}/>
@@ -21,8 +23,8 @@ const Favourites: NextPage = () => {
     <div className={styles.container}>
       <Notifications />
 
-      <main className={globalStyles.main}>
-        <h1>Favourites</h1>
+      <main className={globalStyles.favourites}>
+        <h1 className={globalStyles.pageTitle}>Favourites</h1>
      
         <FavouriteProducts />
       </main>
