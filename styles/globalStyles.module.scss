@@ -1,5 +1,5 @@
 .main {
-	padding: calc(70px + env(safe-area-inset-top)) 0 0;
+	padding: calc(70px + env(safe-area-inset-top)) 0 calc(100px + env(safe-area-inset-bottom));
 }
 
 .favourites {

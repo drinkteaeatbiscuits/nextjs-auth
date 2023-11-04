@@ -145,7 +145,7 @@ const ReviewOrder = (props:any) => {
 
         
 
-        {placingOrder ? <div>Placing Order</div> : <button onClick={(event) => handlePlaceOrder(event)}>Place Order</button>}
+        {placingOrder ? <div>Placing Order</div> : <button className={styles.placeOrderButton} onClick={(event) => handlePlaceOrder(event)}>Place Order</button>}
          
         {orderNumber}
 
