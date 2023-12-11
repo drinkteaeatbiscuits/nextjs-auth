@@ -1,4 +1,4 @@
-package uk.co.topgift.app;
+package D23H3WR3TP.uk.co.topgift.app;
 
 import com.getcapacitor.BridgeActivity;
 
