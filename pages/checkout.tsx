@@ -77,7 +77,7 @@ const Checkout: NextPage = () => {
 			
 				handleSetBillingAddress();
 
-		} else {
+		} else if (yourCartId) {
 
 			setBillingAddress(cartData?.customerCart?.billing_address);
 
@@ -181,11 +181,11 @@ const Checkout: NextPage = () => {
 		await setBillingAddress({variables: {
 			input: {
 				cart_id: yourCartId,
-				billing_address: [
+				billing_address: 
 					{
 						same_as_shipping: true
 					}
-				  ]
+				  
 			}
 		  }}).then((res) => {
 			console.log(res);

@@ -4,14 +4,14 @@ import client from "../constants/apollo-client";
 
 const SET_BILLING_ADDRESS = gql`
 mutation SetBillingAddressOnCart($input: SetBillingAddressOnCartInput) {
-    SetBillingAddressOnCart(input: $input) {
-      cart {
-        billing_address {
-          uid
-        }
+  setBillingAddressOnCart(input: $input) {
+    cart {
+      billing_address {
+        uid
       }
     }
   }
+}
 `;
 
 export const useSetBillingAddress = () => {
