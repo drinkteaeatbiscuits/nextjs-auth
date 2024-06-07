@@ -30,6 +30,7 @@ const Checkout: NextPage = () => {
 	
 	const [ selectedShippingAddress, setSelectedShippingAddress ] = useState<any>(null);
 	const [ selectedShippingMethod, setSelectedShippingMethod ] = useState<any>(null);
+	const [ selectedBillingAddress, setSelectedBillingAddress ] = useState<any>(null);
 	const [ paymentMethod, setPaymentMethod ] = useState<any>(null);
 	
 	const [ checkoutSection, setCheckoutSection ] = useState('shipping');
@@ -67,6 +68,22 @@ const Checkout: NextPage = () => {
 		}
 
 	}, [cartData, addresses]);
+
+
+	useEffect(() => {
+
+		if( yourCartId && !selectedBillingAddress){
+
+			
+				handleSetBillingAddress();
+
+		} else {
+
+			setBillingAddress(cartData?.customerCart?.billing_address);
+
+		}
+
+	}, [cartData, addresses])
 
 
 	useEffect(() => {
