@@ -18,6 +18,7 @@ import BottomNavigationBar from "../components/BottomNavigationBar/BottomNavigat
 import Head from "../components/Head/Head";
 
 import globalStyles from '../styles/globalStyles.module.scss';
+import { useSetBillingAddress } from "../hooks/useSetBillingAddress";
 
 const Checkout: NextPage = () => {
 
@@ -33,8 +34,9 @@ const Checkout: NextPage = () => {
 	
 	const [ checkoutSection, setCheckoutSection ] = useState('shipping');
 	const { setPaymentMethodOnCart } = useSetPaymentMethodOnCart();
-	const {setShippingAddress} = useSetShippingAddress();
-	const {setShippingMethodsOnCart} = useSetShippingMethodsOnCart();
+	const { setShippingAddress} = useSetShippingAddress();
+	const { setBillingAddress } = useSetBillingAddress();
+	const { setShippingMethodsOnCart} = useSetShippingMethodsOnCart();
 
 	
 	const yourCartId = useReactiveVar(cartId);
@@ -150,6 +152,21 @@ const Checkout: NextPage = () => {
 				shipping_addresses: [
 					{
 					  customer_address_id: addresses?.customer?.addresses?.find((address:any) => address.default_shipping).id
+					}
+				  ]
+			}
+		  }}).then((res) => {
+			console.log(res);
+		});
+	}
+
+	const handleSetBillingAddress = async () => {
+		await setBillingAddress({variables: {
+			input: {
+				cart_id: yourCartId,
+				billing_address: [
+					{
+						same_as_shipping: true
 					}
 				  ]
 			}

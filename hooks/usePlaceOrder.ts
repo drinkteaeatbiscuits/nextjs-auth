@@ -27,6 +27,6 @@ export const usePlaceOrder = () => {
       }
     });
 
-  return {placeOrder};
+  return { placeOrder };
 };
 
